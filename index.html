@@ -8,123 +8,168 @@
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #0a0b10;
-      color: #c9d1d9;
+      background: #f5f6fa;
+      color: #1a1d27;
       min-height: 100vh;
-      overflow-x: hidden;
+      overflow: hidden;
     }
 
-    /* ── Layout ── */
-    .app {
-      display: flex;
-      height: 100vh;
-    }
+    .app { display: flex; height: 100vh; }
 
     /* ── Sidebar ── */
     .sidebar {
-      width: 260px;
-      min-width: 260px;
-      background: #0d1017;
-      border-right: 1px solid #1b1f2a;
+      width: 240px;
+      min-width: 240px;
+      background: #fff;
+      border-right: 1px solid #e2e5ed;
       display: flex;
       flex-direction: column;
-      padding: 1.5rem 1rem;
-      gap: 1.5rem;
+      padding: 1.25rem 0.75rem;
+      gap: 1.25rem;
     }
 
-    .sidebar .logo {
+    .logo {
       display: flex;
       align-items: center;
-      gap: 0.6rem;
-      padding: 0 0.25rem;
+      gap: 0.5rem;
+      padding: 0 0.5rem;
     }
 
-    .sidebar .logo svg {
-      width: 28px;
-      height: 28px;
-      color: #7c5bf2;
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .sidebar .logo h1 {
-      font-size: 1rem;
+    .logo-icon svg { width: 18px; height: 18px; color: #fff; }
+
+    .logo h1 {
+      font-size: 0.95rem;
       font-weight: 700;
-      color: #f0f0f0;
+      color: #1a1d27;
       letter-spacing: -0.02em;
     }
 
-    .sidebar .logo span {
-      font-size: 0.7rem;
-      font-weight: 500;
-      color: #7c5bf2;
-      background: #7c5bf215;
-      border: 1px solid #7c5bf230;
-      padding: 1px 6px;
-      border-radius: 4px;
+    .sidebar-label {
+      font-size: 0.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #9ca3b0;
+      padding: 0 0.75rem;
     }
 
-    .sidebar-section {
+    .add-buttons {
       display: flex;
       flex-direction: column;
-      gap: 0.4rem;
+      gap: 0.5rem;
+      padding: 0 0.25rem;
     }
 
-    .sidebar-section h3 {
-      font-size: 0.65rem;
+    .add-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.85rem 1rem;
+      border: 2px dashed #d5d9e2;
+      border-radius: 12px;
+      background: #fafbfc;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      font-family: inherit;
+      font-size: 0.85rem;
       font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #484f58;
-      padding: 0 0.5rem;
-      margin-bottom: 0.25rem;
+      color: #555d6e;
     }
 
-    .sidebar-btn {
+    .add-btn:hover {
+      border-color: #6c5ce7;
+      background: #f0edff;
+      color: #6c5ce7;
+    }
+
+    .add-btn .btn-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .add-btn .btn-icon svg { width: 20px; height: 20px; }
+
+    .add-btn.folder-btn .btn-icon { background: #fff3e0; color: #e67e22; }
+    .add-btn.folder-btn:hover .btn-icon { background: #ffe0b2; }
+    .add-btn.file-btn .btn-icon { background: #e3f2fd; color: #2196f3; }
+    .add-btn.file-btn:hover .btn-icon { background: #bbdefb; }
+
+    .sidebar-divider { height: 1px; background: #eef0f4; margin: 0.25rem 0.5rem; }
+
+    .action-btn {
       display: flex;
       align-items: center;
       gap: 0.6rem;
-      padding: 0.55rem 0.65rem;
+      padding: 0.55rem 0.75rem;
       border: none;
       border-radius: 8px;
       background: transparent;
-      color: #b0b8c1;
-      font-size: 0.82rem;
+      color: #6b7280;
+      font-size: 0.8rem;
       font-family: inherit;
+      font-weight: 500;
       cursor: pointer;
-      transition: all 0.12s ease;
+      transition: all 0.1s;
     }
 
-    .sidebar-btn:hover {
-      background: #161b26;
-      color: #e1e4e8;
+    .action-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+    .action-btn:hover { background: #f0f1f5; color: #1a1d27; }
+    .action-btn.danger:hover { background: #fef2f2; color: #ef4444; }
+
+    .link-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.6rem 0.75rem;
+      border: 2px solid #e2e5ed;
+      border-radius: 10px;
+      background: #fff;
+      color: #6b7280;
+      font-size: 0.8rem;
+      font-family: inherit;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+      margin: 0 0.25rem;
     }
 
-    .sidebar-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
-
-    .sidebar-btn.accent { color: #7c5bf2; }
-    .sidebar-btn.accent:hover { background: #7c5bf212; }
-    .sidebar-btn.danger { color: #e5534b; }
-    .sidebar-btn.danger:hover { background: #e5534b12; }
-
-    .sidebar-divider {
-      height: 1px;
-      background: #1b1f2a;
-      margin: 0.25rem 0;
+    .link-toggle svg { width: 16px; height: 16px; }
+    .link-toggle:hover { border-color: #a29bfe; background: #f8f7ff; }
+    .link-toggle.active {
+      border-color: #6c5ce7;
+      background: #f0edff;
+      color: #6c5ce7;
     }
 
     .sidebar-footer {
       margin-top: auto;
-      padding: 0 0.25rem;
-      font-size: 0.7rem;
-      color: #333940;
+      padding: 0 0.75rem;
+      font-size: 0.65rem;
+      color: #c0c4cc;
     }
 
-    /* ── Main Area ── */
+    /* ── Main Canvas ── */
     .main {
       flex: 1;
       display: flex;
@@ -132,187 +177,420 @@
       overflow: hidden;
     }
 
-    .main-header {
+    .toolbar-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 1rem 1.75rem;
-      border-bottom: 1px solid #1b1f2a;
-      background: #0d101780;
-      backdrop-filter: blur(12px);
+      padding: 0.6rem 1.5rem;
+      background: #fff;
+      border-bottom: 1px solid #e2e5ed;
     }
 
-    .breadcrumb {
-      font-size: 0.8rem;
-      color: #484f58;
-    }
-
-    .breadcrumb strong { color: #c9d1d9; font-weight: 600; }
-
-    .main-header .stats {
+    .toolbar-bar .stats {
       display: flex;
-      gap: 1.25rem;
+      gap: 1rem;
       font-size: 0.75rem;
-      color: #484f58;
+      color: #9ca3b0;
+      font-weight: 500;
     }
 
-    .main-header .stat-item {
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-    }
-
-    .main-header .stat-item .dot {
-      width: 7px;
-      height: 7px;
+    .stat-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
+      margin-right: 4px;
+      vertical-align: middle;
     }
 
-    .main-header .dot-folder { background: #d4943a; }
-    .main-header .dot-file { background: #6b9fed; }
+    .stat-dot.folder { background: #e67e22; }
+    .stat-dot.file { background: #2196f3; }
 
-    .main-content {
+    .toolbar-bar .hint {
+      font-size: 0.7rem;
+      color: #c0c4cc;
+      font-style: italic;
+    }
+
+    .canvas-area {
       flex: 1;
-      overflow-y: auto;
-      padding: 1.5rem 1.75rem;
-    }
-
-    /* ── Tree ── */
-    .tree-node {
+      overflow: auto;
       position: relative;
+      padding: 2rem;
     }
 
-    .tree-node-row {
+    /* SVG connections layer */
+    .connections-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .connection-line {
+      stroke: #a29bfe;
+      stroke-width: 2;
+      stroke-dasharray: 6 4;
+      fill: none;
+      opacity: 0.7;
+    }
+
+    .connection-temp {
+      stroke: #6c5ce7;
+      stroke-width: 2;
+      stroke-dasharray: 4 4;
+      fill: none;
+      opacity: 0.5;
+    }
+
+    /* ── Folder Card ── */
+    .folder-card {
+      background: #fff;
+      border: 2px solid #ede0c8;
+      border-radius: 16px;
+      margin-bottom: 1.25rem;
+      overflow: visible;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+      transition: box-shadow 0.15s, border-color 0.15s;
+      position: relative;
+      z-index: 2;
+    }
+
+    .folder-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.07); }
+    .folder-card.drag-over { border-color: #6c5ce7; box-shadow: 0 0 0 3px #6c5ce720; }
+
+    .folder-header {
       display: flex;
       align-items: center;
-      gap: 0.35rem;
-      padding: 0.3rem 0.5rem;
-      border-radius: 6px;
-      transition: background 0.08s;
-      cursor: default;
+      gap: 0.75rem;
+      padding: 1rem 1.25rem;
+      cursor: grab;
+      user-select: none;
+      border-bottom: 1px solid #f5f0e6;
+      background: linear-gradient(135deg, #fffdf7, #fff9ee);
+      border-radius: 14px 14px 0 0;
     }
 
-    .tree-node-row:hover { background: #151a25; }
+    .folder-header:active { cursor: grabbing; }
 
-    .tree-node-row.selected { background: #7c5bf212; }
+    .folder-header .folder-icon-big {
+      width: 44px;
+      height: 44px;
+      background: #fff3e0;
+      border: 2px solid #ede0c8;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
 
-    .chevron-btn {
-      width: 22px;
-      height: 22px;
+    .folder-icon-big svg { width: 24px; height: 24px; color: #e67e22; }
+
+    .folder-name-input {
+      background: none;
+      border: 2px solid transparent;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #1a1d27;
+      outline: none;
+      padding: 4px 8px;
+      border-radius: 6px;
+      min-width: 100px;
+      flex: 1;
+    }
+
+    .folder-name-input:focus {
+      background: #fff;
+      border-color: #6c5ce744;
+    }
+
+    .folder-desc-input {
+      background: none;
+      border: 2px solid transparent;
+      font-family: inherit;
+      font-size: 0.78rem;
+      color: #9ca3b0;
+      font-style: italic;
+      outline: none;
+      padding: 4px 8px;
+      border-radius: 6px;
+      width: 180px;
+    }
+
+    .folder-desc-input::placeholder { color: #d0d4db; }
+    .folder-desc-input:focus { background: #fff; border-color: #6c5ce722; color: #6b7280; }
+
+    .folder-actions {
+      display: flex;
+      gap: 2px;
+      opacity: 0;
+      transition: opacity 0.12s;
+    }
+
+    .folder-header:hover .folder-actions { opacity: 1; }
+
+    .icon-btn {
+      width: 32px;
+      height: 32px;
       border: none;
       background: none;
-      color: #3d4450;
+      border-radius: 8px;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 4px;
-      flex-shrink: 0;
-      transition: all 0.12s;
+      color: #9ca3b0;
+      transition: all 0.1s;
     }
 
-    .chevron-btn:hover { background: #1e2530; color: #c9d1d9; }
+    .icon-btn svg { width: 16px; height: 16px; }
+    .icon-btn:hover { background: #f0f1f5; color: #1a1d27; }
+    .icon-btn.delete:hover { background: #fef2f2; color: #ef4444; }
 
-    .chevron-btn svg {
+    /* Link anchor (dot on edge of card) */
+    .link-anchor {
+      position: absolute;
       width: 14px;
       height: 14px;
-      transition: transform 0.15s ease;
+      border-radius: 50%;
+      background: #fff;
+      border: 2px solid #d5d9e2;
+      cursor: crosshair;
+      z-index: 10;
+      transition: all 0.12s;
+      top: 50%;
+      right: -7px;
+      transform: translateY(-50%);
+      display: none;
     }
 
-    .chevron-btn.open svg { transform: rotate(90deg); }
-    .chevron-btn.placeholder { visibility: hidden; }
+    .link-mode .link-anchor { display: block; }
+    .link-anchor:hover { border-color: #6c5ce7; background: #f0edff; transform: translateY(-50%) scale(1.3); }
 
-    .node-icon {
-      width: 20px;
-      height: 20px;
-      flex-shrink: 0;
+    /* Folder body: icon grid for children */
+    .folder-body {
+      padding: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      min-height: 60px;
+      align-items: flex-start;
+      align-content: flex-start;
+    }
+
+    .folder-body.collapsed { display: none; }
+
+    /* ── Subfolder mini card ── */
+    .subfolder-card {
+      background: #fffdf7;
+      border: 2px solid #ede0c8;
+      border-radius: 14px;
+      width: 100%;
+      overflow: visible;
+      position: relative;
+      transition: box-shadow 0.15s, border-color 0.15s;
+    }
+
+    .subfolder-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .subfolder-card.drag-over { border-color: #6c5ce7; }
+
+    .subfolder-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.7rem 0.9rem;
+      cursor: grab;
+      user-select: none;
+      border-bottom: 1px solid #f5f0e6;
+    }
+
+    .subfolder-header:active { cursor: grabbing; }
+
+    .subfolder-header .sf-icon {
+      width: 34px;
+      height: 34px;
+      background: #fff3e0;
+      border: 1.5px solid #ede0c8;
+      border-radius: 9px;
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-shrink: 0;
     }
 
-    .node-icon svg { width: 16px; height: 16px; }
-    .node-icon.folder svg { color: #d4943a; }
-    .node-icon.file svg { color: #6b9fed; }
+    .sf-icon svg { width: 18px; height: 18px; color: #e67e22; }
 
-    .node-name-input {
+    .subfolder-header .sf-name {
       background: none;
-      border: 1px solid transparent;
-      color: #e1e4e8;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.82rem;
-      font-weight: 500;
+      border: 2px solid transparent;
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #1a1d27;
       outline: none;
       padding: 2px 6px;
-      border-radius: 4px;
+      border-radius: 5px;
       min-width: 80px;
-      max-width: 200px;
+      flex: 1;
     }
 
-    .node-name-input:focus {
-      background: #0a0b10;
-      border-color: #7c5bf255;
-    }
+    .subfolder-header .sf-name:focus { background: #fff; border-color: #6c5ce733; }
 
-    .node-desc-input {
+    .subfolder-header .sf-desc {
       background: none;
-      border: 1px solid transparent;
-      color: #4d5563;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.78rem;
+      border: 2px solid transparent;
+      font-family: inherit;
+      font-size: 0.72rem;
+      color: #b0b6c0;
       font-style: italic;
       outline: none;
       padding: 2px 6px;
-      border-radius: 4px;
-      flex: 1;
-      min-width: 60px;
+      border-radius: 5px;
+      width: 140px;
     }
 
-    .node-desc-input::placeholder { color: #272c37; }
+    .subfolder-header .sf-desc::placeholder { color: #d5d9e2; }
+    .subfolder-header .sf-desc:focus { background: #fff; border-color: #6c5ce722; color: #888; }
 
-    .node-desc-input:focus {
-      background: #0a0b10;
-      border-color: #7c5bf233;
-      color: #8b949e;
-    }
-
-    .node-actions {
+    .subfolder-actions {
       display: flex;
       gap: 1px;
       opacity: 0;
       transition: opacity 0.12s;
-      margin-left: auto;
     }
 
-    .tree-node-row:hover .node-actions { opacity: 1; }
+    .subfolder-header:hover .subfolder-actions { opacity: 1; }
 
-    .node-action-btn {
-      width: 26px;
-      height: 26px;
-      border: none;
+    .subfolder-body {
+      padding: 0.75rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      min-height: 46px;
+      align-items: flex-start;
+      align-content: flex-start;
+    }
+
+    .subfolder-body.collapsed { display: none; }
+
+    /* ── File Icon Card ── */
+    .file-card {
+      width: 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.75rem 0.4rem 0.6rem;
+      border: 2px solid transparent;
+      border-radius: 12px;
+      cursor: grab;
+      transition: all 0.12s;
+      position: relative;
+      user-select: none;
+    }
+
+    .file-card:active { cursor: grabbing; }
+    .file-card:hover { background: #f0f4ff; border-color: #d0dcf0; }
+
+    .file-card .file-icon-big {
+      width: 48px;
+      height: 48px;
+      background: #e3f2fd;
+      border: 2px solid #bbdefb;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .file-icon-big svg { width: 24px; height: 24px; color: #2196f3; }
+
+    .file-card .file-name {
       background: none;
-      border-radius: 5px;
+      border: 1.5px solid transparent;
+      font-family: inherit;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #1a1d27;
+      outline: none;
+      text-align: center;
+      padding: 2px 4px;
+      border-radius: 4px;
+      width: 100%;
+      min-width: 0;
+    }
+
+    .file-card .file-name:focus { background: #fff; border-color: #6c5ce744; }
+
+    .file-card .file-delete {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      width: 22px;
+      height: 22px;
+      border: none;
+      background: #fff;
+      border-radius: 6px;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #484f58;
+      color: #ccc;
+      opacity: 0;
       transition: all 0.1s;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     }
 
-    .node-action-btn svg { width: 14px; height: 14px; }
-    .node-action-btn:hover { background: #1e2530; color: #c9d1d9; }
-    .node-action-btn.delete:hover { background: #e5534b18; color: #e5534b; }
+    .file-card .file-delete svg { width: 12px; height: 12px; }
+    .file-card:hover .file-delete { opacity: 1; }
+    .file-card .file-delete:hover { color: #ef4444; background: #fef2f2; }
 
-    .tree-children {
-      margin-left: 11px;
-      padding-left: 16px;
-      border-left: 1px solid #1b1f2a;
+    /* ── Drag ghost ── */
+    .dragging { opacity: 0.4; }
+
+    /* ── Drop zone add buttons inside folder ── */
+    .add-icon-btn {
+      width: 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.6rem 0.4rem;
+      border: 2px dashed #dde1ea;
+      border-radius: 12px;
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.12s;
+      font-family: inherit;
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: #b0b6c0;
     }
 
-    .tree-children.collapsed { display: none; }
+    .add-icon-btn:hover { border-color: #6c5ce7; background: #f8f7ff; color: #6c5ce7; }
 
-    /* ── Empty State ── */
+    .add-icon-btn .add-icon-circle {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .add-icon-btn .add-icon-circle svg { width: 20px; height: 20px; }
+
+    .add-icon-btn.folder-add .add-icon-circle { background: #fff8f0; color: #e67e22; }
+    .add-icon-btn.folder-add:hover .add-icon-circle { background: #ffe0b2; }
+    .add-icon-btn.file-add .add-icon-circle { background: #f0f7ff; color: #2196f3; }
+    .add-icon-btn.file-add:hover .add-icon-circle { background: #bbdefb; }
+
+    /* ── Empty state ── */
     .empty-state {
       display: flex;
       flex-direction: column;
@@ -320,48 +598,85 @@
       justify-content: center;
       height: 100%;
       gap: 1rem;
-      color: #2d333b;
+      color: #b0b6c0;
     }
 
-    .empty-state svg { width: 56px; height: 56px; color: #1b1f2a; }
-
-    .empty-state p {
-      font-size: 0.9rem;
-      text-align: center;
-      line-height: 1.6;
+    .empty-state .empty-icon {
+      width: 80px;
+      height: 80px;
+      background: #f0f1f5;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .empty-state p strong { color: #484f58; }
+    .empty-state .empty-icon svg { width: 36px; height: 36px; color: #d0d4db; }
 
-    .empty-state-btn {
-      margin-top: 0.5rem;
+    .empty-state p { font-size: 0.9rem; text-align: center; line-height: 1.6; }
+    .empty-state p strong { color: #6b7280; }
+
+    .empty-cta {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      padding: 0.6rem 1.2rem;
-      border-radius: 8px;
-      border: 1px solid #7c5bf244;
-      background: #7c5bf210;
-      color: #9b82f6;
-      font-size: 0.85rem;
+      padding: 0.7rem 1.4rem;
+      border-radius: 10px;
+      border: none;
+      background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+      color: #fff;
+      font-size: 0.9rem;
       font-family: inherit;
-      font-weight: 500;
+      font-weight: 600;
       cursor: pointer;
       transition: all 0.15s;
+      box-shadow: 0 4px 14px rgba(108,92,231,0.3);
     }
 
-    .empty-state-btn:hover {
-      background: #7c5bf220;
-      border-color: #7c5bf266;
+    .empty-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(108,92,231,0.4); }
+    .empty-cta svg { width: 18px; height: 18px; }
+
+    /* ── Preview Panel ── */
+    .preview-panel {
+      width: 280px;
+      min-width: 280px;
+      background: #fff;
+      border-left: 1px solid #e2e5ed;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
     }
 
-    .empty-state-btn svg { width: 16px; height: 16px; }
+    .preview-panel h3 {
+      font-size: 0.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #9ca3b0;
+      margin-bottom: 1rem;
+    }
+
+    .preview-tree {
+      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+      font-size: 0.72rem;
+      line-height: 1.9;
+      color: #6b7280;
+      white-space: pre;
+    }
+
+    .preview-empty {
+      color: #d0d4db;
+      font-size: 0.8rem;
+      text-align: center;
+      padding: 2rem 0;
+    }
 
     /* ── Modal ── */
     .modal-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.55);
+      background: rgba(0,0,0,0.25);
       backdrop-filter: blur(4px);
       display: flex;
       align-items: center;
@@ -373,37 +688,33 @@
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
     .modal-box {
-      background: #13161f;
-      border: 1px solid #1e2330;
-      border-radius: 14px;
+      background: #fff;
+      border: 1px solid #e2e5ed;
+      border-radius: 16px;
       padding: 1.5rem;
       width: 90%;
       max-width: 640px;
       max-height: 80vh;
       display: flex;
       flex-direction: column;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
       animation: slideUp 0.2s ease;
     }
 
     @keyframes slideUp { from { transform: translateY(10px); opacity: 0; } }
 
-    .modal-box h2 {
-      font-size: 0.95rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-    }
+    .modal-box h2 { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; color: #1a1d27; }
 
     .modal-box pre {
-      background: #0a0b10;
-      border: 1px solid #1b1f2a;
-      border-radius: 8px;
+      background: #f8f9fb;
+      border: 1px solid #e2e5ed;
+      border-radius: 10px;
       padding: 1.25rem;
       font-size: 0.78rem;
       line-height: 1.7;
       overflow: auto;
       flex: 1;
-      color: #8b949e;
+      color: #555d6e;
       font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
     }
 
@@ -415,72 +726,33 @@
     }
 
     .modal-footer button {
-      padding: 0.5rem 1rem;
-      border-radius: 7px;
-      border: 1px solid #1e2330;
-      background: #161b26;
-      color: #c9d1d9;
+      padding: 0.55rem 1.1rem;
+      border-radius: 8px;
+      border: 1px solid #e2e5ed;
+      background: #fff;
+      color: #555d6e;
       cursor: pointer;
       font-size: 0.82rem;
       font-family: inherit;
-      font-weight: 500;
+      font-weight: 600;
       transition: all 0.12s;
     }
 
-    .modal-footer button:hover { background: #1e2530; }
+    .modal-footer button:hover { background: #f0f1f5; }
 
     .modal-footer .btn-primary {
-      background: #7c5bf2;
-      border-color: #7c5bf2;
+      background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+      border-color: transparent;
       color: #fff;
     }
 
-    .modal-footer .btn-primary:hover { background: #6d4de0; }
-
-    /* ── Preview Panel ── */
-    .preview-panel {
-      width: 320px;
-      min-width: 320px;
-      background: #0d1017;
-      border-left: 1px solid #1b1f2a;
-      padding: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      overflow-y: auto;
-    }
-
-    .preview-panel h3 {
-      font-size: 0.65rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #484f58;
-      margin-bottom: 1rem;
-    }
-
-    .preview-tree {
-      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
-      font-size: 0.75rem;
-      line-height: 1.8;
-      color: #6b7280;
-      white-space: pre;
-    }
-
-    .preview-tree .pf { color: #d4943a; }
-    .preview-tree .fi { color: #6b9fed; }
-
-    .preview-empty {
-      color: #272c37;
-      font-size: 0.8rem;
-      text-align: center;
-      padding: 2rem 0;
-    }
+    .modal-footer .btn-primary:hover { opacity: 0.9; }
 
     /* ── Scrollbar ── */
-    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: #1b1f2a; border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: #2d333b; }
+    ::-webkit-scrollbar-thumb { background: #e2e5ed; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #d0d4db; }
   </style>
 </head>
 <body>
@@ -488,37 +760,37 @@
 <div id="root"></div>
 
 <script type="text/babel">
-const { useState, useCallback, useRef, useEffect } = React;
+const { useState, useCallback, useRef, useEffect, useMemo } = React;
 
-// ── Icons (inline SVGs) ──
-const Icons = {
+/* ═══════ SVG ICONS ═══════ */
+const I = {
   folder: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>,
   folderPlus: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/><line x1="12" y1="11" x2="12" y2="17"/><line x1="9" y1="14" x2="15" y2="14"/></svg>,
   file: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>,
   filePlus: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>,
-  chevron: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>,
   trash: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>,
-  copy: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>,
-  export: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>,
-  eraser: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 20H7L3 16l9-9 8 8-4 4"/><line x1="6" y1="11" x2="13" y2="18"/></svg>,
-  layers: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>,
+  chevDown: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"/></svg>,
+  chevRight: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>,
   plus: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>,
+  layers: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>,
+  exportIcon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>,
+  eraser: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 20H7L3 16l9-9 8 8-4 4"/><line x1="6" y1="11" x2="13" y2="18"/></svg>,
+  link: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>,
+  x: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>,
 };
 
-// ── Helpers ──
+/* ═══════ HELPERS ═══════ */
 let _id = 0;
 const uid = () => ++_id;
 
 const makeNode = (type, name) => ({
-  id: uid(),
-  type,
+  id: uid(), type,
   name: name || (type === 'folder' ? 'new-folder' : 'new-file'),
   description: '',
   children: type === 'folder' ? [] : null,
   collapsed: false,
 });
 
-// Sort: folders first, then files, each group alphabetical
 const sortChildren = (children) => {
   if (!children) return children;
   return [...children].sort((a, b) => {
@@ -528,14 +800,12 @@ const sortChildren = (children) => {
   });
 };
 
-// Deep clone + sort
 const sortTree = (nodes) =>
   sortChildren(nodes).map((n) => ({
     ...n,
     children: n.children ? sortTree(n.children) : null,
   }));
 
-// Count
 const countNodes = (nodes) => {
   let folders = 0, files = 0;
   const walk = (list) => {
@@ -548,7 +818,6 @@ const countNodes = (nodes) => {
   return { folders, files };
 };
 
-// Export as ASCII tree
 const buildExport = (nodes, prefix = '') => {
   let lines = [];
   const sorted = sortChildren(nodes);
@@ -566,9 +835,46 @@ const buildExport = (nodes, prefix = '') => {
   return lines;
 };
 
-// ── Tree Node Component ──
-function TreeNode({ node, onUpdate, onDelete, onAddChild, focusId }) {
-  const isFolder = node.type === 'folder';
+// ── Immutable tree ops ──
+const updateInTree = (nodes, id, patch) =>
+  nodes.map((n) => {
+    if (n.id === id) return { ...n, ...patch };
+    if (n.children) return { ...n, children: updateInTree(n.children, id, patch) };
+    return n;
+  });
+
+const deleteInTree = (nodes, id) =>
+  nodes.filter((n) => n.id !== id).map((n) => {
+    if (n.children) return { ...n, children: deleteInTree(n.children, id) };
+    return n;
+  });
+
+const addChildInTree = (nodes, parentId, child) =>
+  nodes.map((n) => {
+    if (n.id === parentId) return { ...n, collapsed: false, children: [...(n.children || []), child] };
+    if (n.children) return { ...n, children: addChildInTree(n.children, parentId, child) };
+    return n;
+  });
+
+const findNodeById = (nodes, id) => {
+  for (const n of nodes) {
+    if (n.id === id) return n;
+    if (n.children) { const f = findNodeById(n.children, id); if (f) return f; }
+  }
+  return null;
+};
+
+// Move node from anywhere to target folder
+const moveNode = (tree, nodeId, targetFolderId) => {
+  const node = findNodeById(tree, nodeId);
+  if (!node) return tree;
+  let newTree = deleteInTree(tree, nodeId);
+  newTree = addChildInTree(newTree, targetFolderId, node);
+  return newTree;
+};
+
+/* ═══════ FILE CARD ═══════ */
+function FileCard({ node, onUpdate, onDelete, focusId, linkMode, onLinkStart }) {
   const nameRef = useRef(null);
 
   useEffect(() => {
@@ -578,239 +884,407 @@ function TreeNode({ node, onUpdate, onDelete, onAddChild, focusId }) {
     }
   }, [focusId, node.id]);
 
-  const sorted = isFolder ? sortChildren(node.children) : [];
+  const onDragStart = (e) => {
+    e.dataTransfer.setData('text/plain', String(node.id));
+    e.dataTransfer.effectAllowed = 'move';
+    e.currentTarget.classList.add('dragging');
+  };
+  const onDragEnd = (e) => e.currentTarget.classList.remove('dragging');
 
   return (
-    <div className="tree-node">
-      <div className="tree-node-row">
-        {isFolder ? (
-          <button
-            className={`chevron-btn ${node.collapsed ? '' : 'open'}`}
-            onClick={() => onUpdate(node.id, { collapsed: !node.collapsed })}
-          >
-            {Icons.chevron}
-          </button>
-        ) : (
-          <span className="chevron-btn placeholder" />
-        )}
+    <div
+      className="file-card"
+      draggable
+      onDragStart={onDragStart}
+      onDragEnd={onDragEnd}
+      data-node-id={node.id}
+      onClick={() => linkMode && onLinkStart(node.id)}
+    >
+      <div className="file-icon-big">{I.file}</div>
+      <input
+        ref={nameRef}
+        className="file-name"
+        value={node.name}
+        placeholder="file-name"
+        spellCheck={false}
+        onChange={(e) => onUpdate(node.id, { name: e.target.value })}
+      />
+      <button className="file-delete" title="Delete" onClick={(e) => { e.stopPropagation(); onDelete(node.id); }}>
+        {I.x}
+      </button>
+      {linkMode && <div className="link-anchor" onClick={(e) => { e.stopPropagation(); onLinkStart(node.id); }} />}
+    </div>
+  );
+}
 
-        <span className={`node-icon ${isFolder ? 'folder' : 'file'}`}>
-          {isFolder ? Icons.folder : Icons.file}
-        </span>
+/* ═══════ SUBFOLDER (nested inside a folder) ═══════ */
+function SubfolderCard({ node, onUpdate, onDelete, onAddChild, onMoveNode, focusId, linkMode, onLinkStart }) {
+  const nameRef = useRef(null);
+  const [dragOver, setDragOver] = useState(false);
 
+  useEffect(() => {
+    if (focusId === node.id && nameRef.current) {
+      nameRef.current.focus();
+      nameRef.current.select();
+    }
+  }, [focusId, node.id]);
+
+  const sorted = sortChildren(node.children || []);
+  const subfolders = sorted.filter((c) => c.type === 'folder');
+  const files = sorted.filter((c) => c.type === 'file');
+
+  const onDragOver = (e) => { e.preventDefault(); e.dataTransfer.dropEffect = 'move'; setDragOver(true); };
+  const onDragLeave = () => setDragOver(false);
+  const onDrop = (e) => {
+    e.preventDefault(); e.stopPropagation(); setDragOver(false);
+    const draggedId = parseInt(e.dataTransfer.getData('text/plain'), 10);
+    if (draggedId && draggedId !== node.id) onMoveNode(draggedId, node.id);
+  };
+
+  const onDragStart = (e) => {
+    e.dataTransfer.setData('text/plain', String(node.id));
+    e.dataTransfer.effectAllowed = 'move';
+    e.currentTarget.closest('.subfolder-card').classList.add('dragging');
+  };
+  const onDragEnd = (e) => {
+    const card = e.currentTarget.closest('.subfolder-card');
+    if (card) card.classList.remove('dragging');
+  };
+
+  return (
+    <div
+      className={`subfolder-card${dragOver ? ' drag-over' : ''}`}
+      onDragOver={onDragOver}
+      onDragLeave={onDragLeave}
+      onDrop={onDrop}
+      data-node-id={node.id}
+    >
+      <div className="subfolder-header" draggable onDragStart={onDragStart} onDragEnd={onDragEnd}>
+        <button className="icon-btn" style={{ width: 24, height: 24 }}
+          onClick={() => onUpdate(node.id, { collapsed: !node.collapsed })}>
+          {node.collapsed ? I.chevRight : I.chevDown}
+        </button>
+        <div className="sf-icon">{I.folder}</div>
         <input
           ref={nameRef}
-          className="node-name-input"
+          className="sf-name"
           value={node.name}
-          placeholder={isFolder ? 'folder-name' : 'file-name'}
+          placeholder="folder-name"
           spellCheck={false}
           onChange={(e) => onUpdate(node.id, { name: e.target.value })}
-          size={Math.max(node.name.length, 8)}
         />
-
         <input
-          className="node-desc-input"
+          className="sf-desc"
           value={node.description}
-          placeholder="add description..."
+          placeholder="description..."
           spellCheck={false}
           onChange={(e) => onUpdate(node.id, { description: e.target.value })}
         />
-
-        <div className="node-actions">
-          {isFolder && (
-            <>
-              <button className="node-action-btn" title="Add subfolder" onClick={() => onAddChild(node.id, 'folder')}>
-                {Icons.folderPlus}
-              </button>
-              <button className="node-action-btn" title="Add file" onClick={() => onAddChild(node.id, 'file')}>
-                {Icons.filePlus}
-              </button>
-            </>
-          )}
-          <button className="node-action-btn delete" title="Delete" onClick={() => onDelete(node.id)}>
-            {Icons.trash}
-          </button>
+        <div className="subfolder-actions">
+          <button className="icon-btn" title="Add subfolder" onClick={() => onAddChild(node.id, 'folder')}>{I.folderPlus}</button>
+          <button className="icon-btn" title="Add file" onClick={() => onAddChild(node.id, 'file')}>{I.filePlus}</button>
+          <button className="icon-btn delete" title="Delete" onClick={() => onDelete(node.id)}>{I.trash}</button>
         </div>
       </div>
 
-      {isFolder && (
-        <div className={`tree-children${node.collapsed ? ' collapsed' : ''}`}>
-          {sorted.map((child) => (
-            <TreeNode
-              key={child.id}
-              node={child}
-              onUpdate={onUpdate}
-              onDelete={onDelete}
-              onAddChild={onAddChild}
-              focusId={focusId}
-            />
+      {!node.collapsed && (
+        <div className="subfolder-body">
+          {subfolders.map((sf) => (
+            <SubfolderCard key={sf.id} node={sf} onUpdate={onUpdate} onDelete={onDelete}
+              onAddChild={onAddChild} onMoveNode={onMoveNode} focusId={focusId}
+              linkMode={linkMode} onLinkStart={onLinkStart} />
           ))}
+          {files.map((f) => (
+            <FileCard key={f.id} node={f} onUpdate={onUpdate} onDelete={onDelete}
+              focusId={focusId} linkMode={linkMode} onLinkStart={onLinkStart} />
+          ))}
+          <button className="add-icon-btn folder-add" onClick={() => onAddChild(node.id, 'folder')}>
+            <div className="add-icon-circle">{I.folderPlus}</div>
+            Folder
+          </button>
+          <button className="add-icon-btn file-add" onClick={() => onAddChild(node.id, 'file')}>
+            <div className="add-icon-circle">{I.filePlus}</div>
+            File
+          </button>
         </div>
       )}
+      {linkMode && <div className="link-anchor" onClick={() => onLinkStart(node.id)} />}
     </div>
   );
 }
 
-// ── Live Preview (right panel) ──
+/* ═══════ ROOT FOLDER CARD ═══════ */
+function FolderCard({ node, onUpdate, onDelete, onAddChild, onMoveNode, focusId, linkMode, onLinkStart }) {
+  const nameRef = useRef(null);
+  const [dragOver, setDragOver] = useState(false);
+
+  useEffect(() => {
+    if (focusId === node.id && nameRef.current) {
+      nameRef.current.focus();
+      nameRef.current.select();
+    }
+  }, [focusId, node.id]);
+
+  const sorted = sortChildren(node.children || []);
+  const subfolders = sorted.filter((c) => c.type === 'folder');
+  const files = sorted.filter((c) => c.type === 'file');
+
+  const onDragOver = (e) => { e.preventDefault(); e.dataTransfer.dropEffect = 'move'; setDragOver(true); };
+  const onDragLeave = () => setDragOver(false);
+  const onDrop = (e) => {
+    e.preventDefault(); e.stopPropagation(); setDragOver(false);
+    const draggedId = parseInt(e.dataTransfer.getData('text/plain'), 10);
+    if (draggedId && draggedId !== node.id) onMoveNode(draggedId, node.id);
+  };
+
+  return (
+    <div
+      className={`folder-card${dragOver ? ' drag-over' : ''}`}
+      onDragOver={onDragOver}
+      onDragLeave={onDragLeave}
+      onDrop={onDrop}
+      data-node-id={node.id}
+    >
+      <div className="folder-header">
+        <button className="icon-btn" style={{ width: 28, height: 28 }}
+          onClick={() => onUpdate(node.id, { collapsed: !node.collapsed })}>
+          {node.collapsed ? I.chevRight : I.chevDown}
+        </button>
+        <div className="folder-icon-big">{I.folder}</div>
+        <input
+          ref={nameRef}
+          className="folder-name-input"
+          value={node.name}
+          placeholder="folder-name"
+          spellCheck={false}
+          onChange={(e) => onUpdate(node.id, { name: e.target.value })}
+        />
+        <input
+          className="folder-desc-input"
+          value={node.description}
+          placeholder="description..."
+          spellCheck={false}
+          onChange={(e) => onUpdate(node.id, { description: e.target.value })}
+        />
+        <div className="folder-actions">
+          <button className="icon-btn" title="Add subfolder" onClick={() => onAddChild(node.id, 'folder')}>{I.folderPlus}</button>
+          <button className="icon-btn" title="Add file" onClick={() => onAddChild(node.id, 'file')}>{I.filePlus}</button>
+          <button className="icon-btn delete" title="Delete" onClick={() => onDelete(node.id)}>{I.trash}</button>
+        </div>
+      </div>
+
+      {!node.collapsed && (
+        <div className="folder-body">
+          {subfolders.map((sf) => (
+            <SubfolderCard key={sf.id} node={sf} onUpdate={onUpdate} onDelete={onDelete}
+              onAddChild={onAddChild} onMoveNode={onMoveNode} focusId={focusId}
+              linkMode={linkMode} onLinkStart={onLinkStart} />
+          ))}
+          {files.map((f) => (
+            <FileCard key={f.id} node={f} onUpdate={onUpdate} onDelete={onDelete}
+              focusId={focusId} linkMode={linkMode} onLinkStart={onLinkStart} />
+          ))}
+          <button className="add-icon-btn folder-add" onClick={() => onAddChild(node.id, 'folder')}>
+            <div className="add-icon-circle">{I.folderPlus}</div>
+            Folder
+          </button>
+          <button className="add-icon-btn file-add" onClick={() => onAddChild(node.id, 'file')}>
+            <div className="add-icon-circle">{I.filePlus}</div>
+            File
+          </button>
+        </div>
+      )}
+      {linkMode && <div className="link-anchor" onClick={() => onLinkStart(node.id)} />}
+    </div>
+  );
+}
+
+/* ═══════ CONNECTIONS SVG ═══════ */
+function ConnectionsLayer({ links, tempLink }) {
+  const [positions, setPositions] = useState({});
+
+  useEffect(() => {
+    const update = () => {
+      const canvas = document.querySelector('.canvas-area');
+      if (!canvas) return;
+      const cRect = canvas.getBoundingClientRect();
+      const scrollLeft = canvas.scrollLeft;
+      const scrollTop = canvas.scrollTop;
+      const pos = {};
+      document.querySelectorAll('[data-node-id]').forEach((el) => {
+        const id = el.getAttribute('data-node-id');
+        const r = el.getBoundingClientRect();
+        pos[id] = {
+          x: r.left - cRect.left + scrollLeft + r.width / 2,
+          y: r.top - cRect.top + scrollTop + r.height / 2,
+          right: r.right - cRect.left + scrollLeft,
+          left: r.left - cRect.left + scrollLeft,
+        };
+      });
+      setPositions(pos);
+    };
+    update();
+    const interval = setInterval(update, 300);
+    return () => clearInterval(interval);
+  }, [links]);
+
+  return (
+    <svg className="connections-layer">
+      {links.map((lk, i) => {
+        const a = positions[lk.from];
+        const b = positions[lk.to];
+        if (!a || !b) return null;
+        const x1 = a.right;
+        const y1 = a.y;
+        const x2 = b.left;
+        const y2 = b.y;
+        const mx = (x1 + x2) / 2;
+        return (
+          <path key={i} className="connection-line"
+            d={`M ${x1} ${y1} C ${mx} ${y1}, ${mx} ${y2}, ${x2} ${y2}`} />
+        );
+      })}
+    </svg>
+  );
+}
+
+/* ═══════ PREVIEW ═══════ */
 function LivePreview({ tree }) {
   if (tree.length === 0) return <p className="preview-empty">Your structure will appear here</p>;
-
   const lines = buildExport(tree, '');
-  return (
-    <div className="preview-tree">
-      {lines.map((line, i) => {
-        const isFolder = line.includes('/') && !line.includes('.');
-        return <div key={i}>{line}</div>;
-      })}
-    </div>
-  );
+  return <div className="preview-tree">{lines.map((l, i) => <div key={i}>{l}</div>)}</div>;
 }
 
-// ── App ──
+/* ═══════ APP ═══════ */
 function App() {
   const [tree, setTree] = useState([]);
   const [focusId, setFocusId] = useState(null);
   const [showExport, setShowExport] = useState(false);
   const [copyLabel, setCopyLabel] = useState('Copy');
+  const [linkMode, setLinkMode] = useState(false);
+  const [links, setLinks] = useState([]);
+  const [linkFrom, setLinkFrom] = useState(null);
 
-  // Deep update helper
-  const updateInTree = useCallback((nodes, id, patch) => {
-    return nodes.map((n) => {
-      if (n.id === id) return { ...n, ...patch };
-      if (n.children) return { ...n, children: updateInTree(n.children, id, patch) };
-      return n;
-    });
-  }, []);
-
-  const deleteInTree = useCallback((nodes, id) => {
-    return nodes.filter((n) => n.id !== id).map((n) => {
-      if (n.children) return { ...n, children: deleteInTree(n.children, id) };
-      return n;
-    });
-  }, []);
-
-  const addChildInTree = useCallback((nodes, parentId, child) => {
-    return nodes.map((n) => {
-      if (n.id === parentId) {
-        return { ...n, collapsed: false, children: [...(n.children || []), child] };
-      }
-      if (n.children) return { ...n, children: addChildInTree(n.children, parentId, child) };
-      return n;
-    });
-  }, []);
-
-  const handleUpdate = useCallback((id, patch) => {
-    setTree((prev) => updateInTree(prev, id, patch));
-  }, [updateInTree]);
-
+  const handleUpdate = useCallback((id, patch) => setTree((p) => updateInTree(p, id, patch)), []);
   const handleDelete = useCallback((id) => {
-    setTree((prev) => deleteInTree(prev, id));
-  }, [deleteInTree]);
-
+    setTree((p) => deleteInTree(p, id));
+    setLinks((prev) => prev.filter((l) => l.from !== id && l.to !== id));
+  }, []);
   const handleAddChild = useCallback((parentId, type) => {
     const child = makeNode(type);
-    setTree((prev) => addChildInTree(prev, parentId, child));
+    setTree((p) => addChildInTree(p, parentId, child));
     setFocusId(child.id);
-  }, [addChildInTree]);
-
+  }, []);
   const handleAddRoot = useCallback(() => {
     const node = makeNode('folder');
-    setTree((prev) => [...prev, node]);
+    setTree((p) => [...p, node]);
     setFocusId(node.id);
   }, []);
-
+  const handleMoveNode = useCallback((nodeId, targetId) => {
+    setTree((p) => moveNode(p, nodeId, targetId));
+  }, []);
   const handleClear = useCallback(() => {
     if (tree.length === 0) return;
-    if (confirm('Clear the entire structure?')) setTree([]);
+    if (confirm('Clear everything?')) { setTree([]); setLinks([]); }
   }, [tree]);
-
   const handleCopy = useCallback(() => {
-    const text = buildExport(tree, '').join('\n');
-    navigator.clipboard.writeText(text);
+    navigator.clipboard.writeText(buildExport(tree, '').join('\n'));
     setCopyLabel('Copied!');
     setTimeout(() => setCopyLabel('Copy'), 1500);
   }, [tree]);
+
+  const handleLinkStart = useCallback((id) => {
+    if (!linkMode) return;
+    if (linkFrom === null) {
+      setLinkFrom(id);
+    } else {
+      if (linkFrom !== id) {
+        setLinks((prev) => {
+          const exists = prev.some((l) => (l.from === linkFrom && l.to === id) || (l.from === id && l.to === linkFrom));
+          if (exists) return prev.filter((l) => !((l.from === linkFrom && l.to === id) || (l.from === id && l.to === linkFrom)));
+          return [...prev, { from: linkFrom, to: id }];
+        });
+      }
+      setLinkFrom(null);
+    }
+  }, [linkMode, linkFrom]);
 
   const { folders, files } = countNodes(tree);
   const sorted = sortTree(tree);
 
   return (
-    <div className="app">
+    <div className={`app${linkMode ? ' link-mode' : ''}`}>
       {/* Sidebar */}
       <div className="sidebar">
         <div className="logo">
-          {Icons.layers}
-          <div>
-            <h1>Structure</h1>
-          </div>
-          <span>Planner</span>
+          <div className="logo-icon">{I.layers}</div>
+          <h1>Structure Planner</h1>
         </div>
 
-        <div className="sidebar-section">
-          <h3>Create</h3>
-          <button className="sidebar-btn accent" onClick={handleAddRoot}>
-            {Icons.folderPlus}
-            Add Root Folder
-          </button>
+        <div>
+          <div className="sidebar-label">Add to Root</div>
+          <div className="add-buttons" style={{ marginTop: '0.5rem' }}>
+            <button className="add-btn folder-btn" onClick={handleAddRoot}>
+              <div className="btn-icon">{I.folderPlus}</div>
+              New Folder
+            </button>
+          </div>
         </div>
 
         <div className="sidebar-divider" />
 
-        <div className="sidebar-section">
-          <h3>Actions</h3>
-          <button className="sidebar-btn" onClick={() => tree.length && setShowExport(true)}>
-            {Icons.export}
-            Export Structure
-          </button>
-          <button className="sidebar-btn danger" onClick={handleClear}>
-            {Icons.eraser}
-            Clear All
-          </button>
-        </div>
+        <div className="sidebar-label">Tools</div>
+        <button className={`link-toggle${linkMode ? ' active' : ''}`}
+          onClick={() => { setLinkMode((p) => !p); setLinkFrom(null); }}>
+          {I.link}
+          {linkMode ? (linkFrom !== null ? 'Click target...' : 'Link Mode ON') : 'Link Mode'}
+        </button>
 
-        <div className="sidebar-footer">
-          Folders always appear above files
-        </div>
+        <div className="sidebar-divider" />
+
+        <div className="sidebar-label">Actions</div>
+        <button className="action-btn" onClick={() => tree.length && setShowExport(true)}>
+          {I.exportIcon} Export
+        </button>
+        <button className="action-btn danger" onClick={handleClear}>
+          {I.eraser} Clear All
+        </button>
+
+        <div className="sidebar-footer">Folders always sort above files</div>
       </div>
 
-      {/* Main tree editor */}
+      {/* Main canvas */}
       <div className="main">
-        <div className="main-header">
-          <div className="breadcrumb">
-            <strong>Project</strong> / structure
-          </div>
+        <div className="toolbar-bar">
           <div className="stats">
-            <span className="stat-item"><span className="dot dot-folder" /> {folders} folder{folders !== 1 ? 's' : ''}</span>
-            <span className="stat-item"><span className="dot dot-file" /> {files} file{files !== 1 ? 's' : ''}</span>
+            <span><span className="stat-dot folder" />{folders} folder{folders !== 1 ? 's' : ''}</span>
+            <span><span className="stat-dot file" />{files} file{files !== 1 ? 's' : ''}</span>
+          </div>
+          <div className="hint">
+            {linkMode ? 'Click two items to connect / disconnect them' : 'Drag items between folders to reorganize'}
           </div>
         </div>
 
-        <div className="main-content">
+        <div className="canvas-area">
+          <ConnectionsLayer links={links} />
           {sorted.length === 0 ? (
             <div className="empty-state">
-              {Icons.layers}
-              <p>Start planning your project structure.<br />Click the button below or use the sidebar.</p>
-              <button className="empty-state-btn" onClick={handleAddRoot}>
-                {Icons.plus}
-                Add Your First Folder
-              </button>
+              <div className="empty-icon">{I.layers}</div>
+              <p>Plan your project's file structure.<br />Add a root folder to get started.</p>
+              <button className="empty-cta" onClick={handleAddRoot}>{I.plus} Add Root Folder</button>
             </div>
           ) : (
             sorted.map((node) => (
-              <TreeNode
-                key={node.id}
-                node={node}
-                onUpdate={handleUpdate}
-                onDelete={handleDelete}
-                onAddChild={handleAddChild}
-                focusId={focusId}
-              />
+              <FolderCard key={node.id} node={node}
+                onUpdate={handleUpdate} onDelete={handleDelete}
+                onAddChild={handleAddChild} onMoveNode={handleMoveNode}
+                focusId={focusId} linkMode={linkMode} onLinkStart={handleLinkStart} />
             ))
           )}
         </div>
       </div>
 
-      {/* Live preview panel */}
+      {/* Preview */}
       <div className="preview-panel">
         <h3>Live Preview</h3>
         <LivePreview tree={sorted} />
@@ -824,9 +1298,7 @@ function App() {
             <pre>{buildExport(tree, '').join('\n')}</pre>
             <div className="modal-footer">
               <button onClick={() => setShowExport(false)}>Close</button>
-              <button className="btn-primary" onClick={handleCopy}>
-                {copyLabel}
-              </button>
+              <button className="btn-primary" onClick={handleCopy}>{copyLabel}</button>
             </div>
           </div>
         </div>
