@@ -228,18 +228,18 @@
       outline-offset: -1px;
     }
 
-    /* ── Add row buttons (inside folder) ── */
-    .add-child-row {
-      display: flex; gap: 0.4rem; padding: 0.3rem 0 0.3rem 0; margin-left: 0;
+    /* ── Inline add buttons (beside folder row) ── */
+    .folder-add-btns {
+      display: flex; gap: 0.35rem; padding: 0.2rem 0 0.1rem 70px;
     }
 
     .add-child-btn {
-      display: flex; align-items: center; gap: 0.4rem;
-      padding: 0.4rem 0.75rem; border: 2px dashed #dde1ea; border-radius: 8px;
+      display: flex; align-items: center; gap: 0.35rem;
+      padding: 0.3rem 0.65rem; border: 2px dashed #dde1ea; border-radius: 8px;
       background: transparent; cursor: pointer; transition: all 0.12s;
-      font-family: inherit; font-size: 0.72rem; font-weight: 600; color: #b0b6c0;
+      font-family: inherit; font-size: 0.7rem; font-weight: 600; color: #b0b6c0;
     }
-    .add-child-btn svg { width: 14px; height: 14px; }
+    .add-child-btn svg { width: 13px; height: 13px; }
     .add-child-btn:hover { border-color: #6c5ce7; background: #f8f7ff; color: #6c5ce7; }
     .add-child-btn.folder-add:hover { border-color: #e67e22; background: #fff8f0; color: #e67e22; }
     .add-child-btn.file-add:hover { border-color: #2196f3; background: #f0f7ff; color: #2196f3; }
@@ -595,6 +595,17 @@ function TreeNode({ node, onUpdate, onDelete, onAddChild, onMoveNode, focusId, l
         </div>
       </div>
 
+      {isFolder && !node.collapsed && (
+        <div className="folder-add-btns">
+          <button className="add-child-btn file-add" onClick={() => onAddChild(node.id, 'file')}>
+            {I.filePlus} File
+          </button>
+          <button className="add-child-btn folder-add" onClick={() => onAddChild(node.id, 'folder')}>
+            {I.folderPlus} Folder
+          </button>
+        </div>
+      )}
+
       {isFolder && (
         <div className={`tree-children${node.collapsed ? ' collapsed' : ''}`}>
           {sorted.map((child) => (
@@ -612,14 +623,6 @@ function TreeNode({ node, onUpdate, onDelete, onAddChild, onMoveNode, focusId, l
               depth={depth + 1}
             />
           ))}
-          <div className="add-child-row">
-            <button className="add-child-btn file-add" onClick={() => onAddChild(node.id, 'file')}>
-              {I.filePlus} File
-            </button>
-            <button className="add-child-btn folder-add" onClick={() => onAddChild(node.id, 'folder')}>
-              {I.folderPlus} Folder
-            </button>
-          </div>
         </div>
       )}
     </div>
