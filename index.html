@@ -31,7 +31,7 @@
       display: flex;
       flex-direction: column;
       padding: 1.25rem 0.75rem;
-      gap: 1.25rem;
+      gap: 1rem;
     }
 
     .logo {
@@ -42,710 +42,302 @@
     }
 
     .logo-icon {
-      width: 32px;
-      height: 32px;
+      width: 32px; height: 32px;
       background: linear-gradient(135deg, #6c5ce7, #a29bfe);
       border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
     }
-
     .logo-icon svg { width: 18px; height: 18px; color: #fff; }
-
-    .logo h1 {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: #1a1d27;
-      letter-spacing: -0.02em;
-    }
+    .logo h1 { font-size: 0.95rem; font-weight: 700; color: #1a1d27; }
 
     .sidebar-label {
-      font-size: 0.6rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: #9ca3b0;
-      padding: 0 0.75rem;
+      font-size: 0.6rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; color: #9ca3b0; padding: 0 0.75rem;
     }
 
-    .add-buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      padding: 0 0.25rem;
-    }
+    .add-buttons { display: flex; flex-direction: column; gap: 0.5rem; padding: 0 0.25rem; }
 
     .add-btn {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 0.85rem 1rem;
-      border: 2px dashed #d5d9e2;
-      border-radius: 12px;
-      background: #fafbfc;
-      cursor: pointer;
-      transition: all 0.15s ease;
-      font-family: inherit;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: #555d6e;
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.85rem 1rem; border: 2px dashed #d5d9e2; border-radius: 12px;
+      background: #fafbfc; cursor: pointer; transition: all 0.15s ease;
+      font-family: inherit; font-size: 0.85rem; font-weight: 600; color: #555d6e;
     }
-
-    .add-btn:hover {
-      border-color: #6c5ce7;
-      background: #f0edff;
-      color: #6c5ce7;
-    }
+    .add-btn:hover { border-color: #6c5ce7; background: #f0edff; color: #6c5ce7; }
 
     .add-btn .btn-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
+      width: 36px; height: 36px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
     }
-
     .add-btn .btn-icon svg { width: 20px; height: 20px; }
-
     .add-btn.folder-btn .btn-icon { background: #fff3e0; color: #e67e22; }
-    .add-btn.folder-btn:hover .btn-icon { background: #ffe0b2; }
     .add-btn.file-btn .btn-icon { background: #e3f2fd; color: #2196f3; }
-    .add-btn.file-btn:hover .btn-icon { background: #bbdefb; }
 
     .sidebar-divider { height: 1px; background: #eef0f4; margin: 0.25rem 0.5rem; }
 
     .action-btn {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.55rem 0.75rem;
-      border: none;
-      border-radius: 8px;
-      background: transparent;
-      color: #6b7280;
-      font-size: 0.8rem;
-      font-family: inherit;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.1s;
+      display: flex; align-items: center; gap: 0.6rem;
+      padding: 0.55rem 0.75rem; border: none; border-radius: 8px;
+      background: transparent; color: #6b7280; font-size: 0.8rem;
+      font-family: inherit; font-weight: 500; cursor: pointer; transition: all 0.1s;
     }
-
     .action-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
     .action-btn:hover { background: #f0f1f5; color: #1a1d27; }
     .action-btn.danger:hover { background: #fef2f2; color: #ef4444; }
 
     .link-toggle {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.6rem 0.75rem;
-      border: 2px solid #e2e5ed;
-      border-radius: 10px;
-      background: #fff;
-      color: #6b7280;
-      font-size: 0.8rem;
-      font-family: inherit;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.15s;
+      display: flex; align-items: center; gap: 0.6rem;
+      padding: 0.6rem 0.75rem; border: 2px solid #e2e5ed; border-radius: 10px;
+      background: #fff; color: #6b7280; font-size: 0.8rem;
+      font-family: inherit; font-weight: 600; cursor: pointer; transition: all 0.15s;
       margin: 0 0.25rem;
     }
-
     .link-toggle svg { width: 16px; height: 16px; }
     .link-toggle:hover { border-color: #a29bfe; background: #f8f7ff; }
-    .link-toggle.active {
-      border-color: #6c5ce7;
-      background: #f0edff;
-      color: #6c5ce7;
-    }
+    .link-toggle.active { border-color: #6c5ce7; background: #f0edff; color: #6c5ce7; }
+    .link-toggle.waiting { border-color: #e67e22; background: #fff8f0; color: #e67e22; animation: pulse 1.2s ease infinite; }
+
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
 
     .sidebar-footer {
-      margin-top: auto;
-      padding: 0 0.75rem;
-      font-size: 0.65rem;
-      color: #c0c4cc;
+      margin-top: auto; padding: 0 0.75rem;
+      font-size: 0.65rem; color: #c0c4cc;
     }
 
-    /* ── Main Canvas ── */
-    .main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
+    /* ── Main ── */
+    .main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
 
     .toolbar-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.6rem 1.5rem;
-      background: #fff;
-      border-bottom: 1px solid #e2e5ed;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.6rem 1.5rem; background: #fff; border-bottom: 1px solid #e2e5ed;
     }
-
-    .toolbar-bar .stats {
-      display: flex;
-      gap: 1rem;
-      font-size: 0.75rem;
-      color: #9ca3b0;
-      font-weight: 500;
-    }
-
-    .stat-dot {
-      display: inline-block;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      margin-right: 4px;
-      vertical-align: middle;
-    }
-
+    .toolbar-bar .stats { display: flex; gap: 1rem; font-size: 0.75rem; color: #9ca3b0; font-weight: 500; }
+    .stat-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 4px; vertical-align: middle; }
     .stat-dot.folder { background: #e67e22; }
     .stat-dot.file { background: #2196f3; }
-
-    .toolbar-bar .hint {
-      font-size: 0.7rem;
-      color: #c0c4cc;
-      font-style: italic;
-    }
+    .toolbar-bar .hint { font-size: 0.7rem; color: #c0c4cc; font-style: italic; }
 
     .canvas-area {
-      flex: 1;
-      overflow: auto;
-      position: relative;
-      padding: 2rem;
+      flex: 1; overflow: auto; position: relative; padding: 1.5rem 2rem;
     }
 
-    /* SVG connections layer */
-    .connections-layer {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 1;
+    /* ── Visual Tree ── */
+    .tree-node { position: relative; }
+
+    .tree-row {
+      display: flex; align-items: center; gap: 0.5rem;
+      padding: 0.45rem 0.6rem; border-radius: 10px; transition: background 0.1s;
+      cursor: default; margin-bottom: 2px;
     }
+    .tree-row:hover { background: #f0f1f5; }
+    .tree-row.link-selectable { cursor: pointer; }
+    .tree-row.link-selectable:hover { background: #f0edff; }
+    .tree-row.link-selected { background: #ede6ff; outline: 2px solid #a29bfe; outline-offset: -1px; }
 
-    .connection-line {
-      stroke: #a29bfe;
-      stroke-width: 2;
-      stroke-dasharray: 6 4;
-      fill: none;
-      opacity: 0.7;
+    /* Chevron */
+    .chev-btn {
+      width: 28px; height: 28px; border: none; background: none;
+      color: #b0b6c0; cursor: pointer; display: flex;
+      align-items: center; justify-content: center; border-radius: 6px;
+      flex-shrink: 0; transition: all 0.12s;
     }
+    .chev-btn:hover { background: #e8eaf0; color: #555; }
+    .chev-btn svg { width: 16px; height: 16px; transition: transform 0.15s ease; }
+    .chev-btn.open svg { transform: rotate(90deg); }
+    .chev-placeholder { width: 28px; flex-shrink: 0; }
 
-    .connection-temp {
-      stroke: #6c5ce7;
-      stroke-width: 2;
-      stroke-dasharray: 4 4;
-      fill: none;
-      opacity: 0.5;
+    /* Icon */
+    .node-icon-box {
+      width: 42px; height: 42px; border-radius: 11px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; border: 2px solid;
     }
+    .node-icon-box svg { width: 22px; height: 22px; }
+    .node-icon-box.folder { background: #fff8f0; border-color: #f0d9b5; color: #e67e22; }
+    .node-icon-box.file { background: #f0f7ff; border-color: #b8d8f8; color: #2196f3; }
 
-    /* ── Folder Card ── */
-    .folder-card {
-      background: #fff;
-      border: 2px solid #ede0c8;
-      border-radius: 16px;
-      margin-bottom: 1.25rem;
-      overflow: visible;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-      transition: box-shadow 0.15s, border-color 0.15s;
-      position: relative;
-      z-index: 2;
+    /* Name input */
+    .node-name {
+      background: none; border: 2px solid transparent;
+      font-family: inherit; font-size: 0.9rem; font-weight: 600;
+      color: #1a1d27; outline: none; padding: 4px 8px; border-radius: 6px;
+      min-width: 100px; max-width: 240px;
     }
+    .node-name:focus { background: #fff; border-color: #6c5ce744; }
 
-    .folder-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.07); }
-    .folder-card.drag-over { border-color: #6c5ce7; box-shadow: 0 0 0 3px #6c5ce720; }
-
-    .folder-header {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 1rem 1.25rem;
-      cursor: grab;
-      user-select: none;
-      border-bottom: 1px solid #f5f0e6;
-      background: linear-gradient(135deg, #fffdf7, #fff9ee);
-      border-radius: 14px 14px 0 0;
+    /* Desc input */
+    .node-desc {
+      background: none; border: 2px solid transparent;
+      font-family: inherit; font-size: 0.78rem; color: #9ca3b0; font-style: italic;
+      outline: none; padding: 4px 8px; border-radius: 6px; width: 180px;
     }
+    .node-desc::placeholder { color: #d0d4db; }
+    .node-desc:focus { background: #fff; border-color: #6c5ce722; color: #6b7280; }
 
-    .folder-header:active { cursor: grabbing; }
-
-    .folder-header .folder-icon-big {
-      width: 44px;
-      height: 44px;
-      background: #fff3e0;
-      border: 2px solid #ede0c8;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .folder-icon-big svg { width: 24px; height: 24px; color: #e67e22; }
-
-    .folder-name-input {
-      background: none;
-      border: 2px solid transparent;
-      font-family: inherit;
-      font-size: 1rem;
-      font-weight: 700;
-      color: #1a1d27;
-      outline: none;
-      padding: 4px 8px;
-      border-radius: 6px;
-      min-width: 100px;
-      flex: 1;
-    }
-
-    .folder-name-input:focus {
-      background: #fff;
-      border-color: #6c5ce744;
-    }
-
-    .folder-desc-input {
-      background: none;
-      border: 2px solid transparent;
-      font-family: inherit;
-      font-size: 0.78rem;
-      color: #9ca3b0;
-      font-style: italic;
-      outline: none;
-      padding: 4px 8px;
-      border-radius: 6px;
-      width: 180px;
-    }
-
-    .folder-desc-input::placeholder { color: #d0d4db; }
-    .folder-desc-input:focus { background: #fff; border-color: #6c5ce722; color: #6b7280; }
-
-    .folder-actions {
-      display: flex;
-      gap: 2px;
-      opacity: 0;
-      transition: opacity 0.12s;
-    }
-
-    .folder-header:hover .folder-actions { opacity: 1; }
+    /* Row actions */
+    .row-actions { display: flex; gap: 2px; opacity: 0; transition: opacity 0.12s; margin-left: auto; }
+    .tree-row:hover .row-actions { opacity: 1; }
 
     .icon-btn {
-      width: 32px;
-      height: 32px;
-      border: none;
-      background: none;
-      border-radius: 8px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #9ca3b0;
-      transition: all 0.1s;
+      width: 32px; height: 32px; border: none; background: none; border-radius: 8px;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      color: #9ca3b0; transition: all 0.1s;
     }
-
     .icon-btn svg { width: 16px; height: 16px; }
-    .icon-btn:hover { background: #f0f1f5; color: #1a1d27; }
+    .icon-btn:hover { background: #e8eaf0; color: #1a1d27; }
+    .icon-btn.add-folder:hover { background: #fff3e0; color: #e67e22; }
+    .icon-btn.add-file:hover { background: #e3f2fd; color: #2196f3; }
     .icon-btn.delete:hover { background: #fef2f2; color: #ef4444; }
 
-    /* Link anchor (dot on edge of card) */
-    .link-anchor {
+    /* Tree branch lines */
+    .tree-children {
+      position: relative;
+      margin-left: 14px;
+      padding-left: 28px;
+    }
+
+    /* vertical line */
+    .tree-children::before {
+      content: '';
       position: absolute;
+      left: 14px;
+      top: 0;
+      bottom: 12px;
+      width: 2px;
+      background: #e2e5ed;
+      border-radius: 1px;
+    }
+
+    /* horizontal branches per child */
+    .tree-children > .tree-node::before {
+      content: '';
+      position: absolute;
+      left: -14px;
+      top: 23px;
       width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: #fff;
-      border: 2px solid #d5d9e2;
-      cursor: crosshair;
-      z-index: 10;
-      transition: all 0.12s;
-      top: 50%;
-      right: -7px;
-      transform: translateY(-50%);
-      display: none;
+      height: 2px;
+      background: #e2e5ed;
     }
 
-    .link-mode .link-anchor { display: block; }
-    .link-anchor:hover { border-color: #6c5ce7; background: #f0edff; transform: translateY(-50%) scale(1.3); }
+    .tree-children.collapsed { display: none; }
 
-    /* Folder body: icon grid for children */
-    .folder-body {
-      padding: 1rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      min-height: 60px;
-      align-items: flex-start;
-      align-content: flex-start;
+    /* ── Drop target highlight ── */
+    .tree-row.drag-over {
+      background: #f0edff;
+      outline: 2px dashed #a29bfe;
+      outline-offset: -1px;
     }
 
-    .folder-body.collapsed { display: none; }
-
-    /* ── Subfolder mini card ── */
-    .subfolder-card {
-      background: #fffdf7;
-      border: 2px solid #ede0c8;
-      border-radius: 14px;
-      width: 100%;
-      overflow: visible;
-      position: relative;
-      transition: box-shadow 0.15s, border-color 0.15s;
+    /* ── Add row buttons (inside folder) ── */
+    .add-child-row {
+      display: flex; gap: 0.4rem; padding: 0.3rem 0 0.3rem 0; margin-left: 0;
     }
 
-    .subfolder-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-    .subfolder-card.drag-over { border-color: #6c5ce7; }
+    .add-child-btn {
+      display: flex; align-items: center; gap: 0.4rem;
+      padding: 0.4rem 0.75rem; border: 2px dashed #dde1ea; border-radius: 8px;
+      background: transparent; cursor: pointer; transition: all 0.12s;
+      font-family: inherit; font-size: 0.72rem; font-weight: 600; color: #b0b6c0;
+    }
+    .add-child-btn svg { width: 14px; height: 14px; }
+    .add-child-btn:hover { border-color: #6c5ce7; background: #f8f7ff; color: #6c5ce7; }
+    .add-child-btn.folder-add:hover { border-color: #e67e22; background: #fff8f0; color: #e67e22; }
+    .add-child-btn.file-add:hover { border-color: #2196f3; background: #f0f7ff; color: #2196f3; }
 
-    .subfolder-header {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.7rem 0.9rem;
-      cursor: grab;
-      user-select: none;
-      border-bottom: 1px solid #f5f0e6;
+    /* ── Connection lines (SVG overlay) ── */
+    .connections-svg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: 50;
     }
 
-    .subfolder-header:active { cursor: grabbing; }
-
-    .subfolder-header .sf-icon {
-      width: 34px;
-      height: 34px;
-      background: #fff3e0;
-      border: 1.5px solid #ede0c8;
-      border-radius: 9px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
+    .conn-line {
+      fill: none;
+      stroke: #a29bfe;
+      stroke-width: 2.5;
+      stroke-dasharray: 8 5;
+      filter: drop-shadow(0 1px 2px rgba(108,92,231,0.25));
     }
 
-    .sf-icon svg { width: 18px; height: 18px; color: #e67e22; }
-
-    .subfolder-header .sf-name {
-      background: none;
-      border: 2px solid transparent;
-      font-family: inherit;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: #1a1d27;
-      outline: none;
-      padding: 2px 6px;
-      border-radius: 5px;
-      min-width: 80px;
-      flex: 1;
+    .conn-dot {
+      fill: #a29bfe;
+      stroke: #fff;
+      stroke-width: 2;
     }
-
-    .subfolder-header .sf-name:focus { background: #fff; border-color: #6c5ce733; }
-
-    .subfolder-header .sf-desc {
-      background: none;
-      border: 2px solid transparent;
-      font-family: inherit;
-      font-size: 0.72rem;
-      color: #b0b6c0;
-      font-style: italic;
-      outline: none;
-      padding: 2px 6px;
-      border-radius: 5px;
-      width: 140px;
-    }
-
-    .subfolder-header .sf-desc::placeholder { color: #d5d9e2; }
-    .subfolder-header .sf-desc:focus { background: #fff; border-color: #6c5ce722; color: #888; }
-
-    .subfolder-actions {
-      display: flex;
-      gap: 1px;
-      opacity: 0;
-      transition: opacity 0.12s;
-    }
-
-    .subfolder-header:hover .subfolder-actions { opacity: 1; }
-
-    .subfolder-body {
-      padding: 0.75rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      min-height: 46px;
-      align-items: flex-start;
-      align-content: flex-start;
-    }
-
-    .subfolder-body.collapsed { display: none; }
-
-    /* ── File Icon Card ── */
-    .file-card {
-      width: 100px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.35rem;
-      padding: 0.75rem 0.4rem 0.6rem;
-      border: 2px solid transparent;
-      border-radius: 12px;
-      cursor: grab;
-      transition: all 0.12s;
-      position: relative;
-      user-select: none;
-    }
-
-    .file-card:active { cursor: grabbing; }
-    .file-card:hover { background: #f0f4ff; border-color: #d0dcf0; }
-
-    .file-card .file-icon-big {
-      width: 48px;
-      height: 48px;
-      background: #e3f2fd;
-      border: 2px solid #bbdefb;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .file-icon-big svg { width: 24px; height: 24px; color: #2196f3; }
-
-    .file-card .file-name {
-      background: none;
-      border: 1.5px solid transparent;
-      font-family: inherit;
-      font-size: 0.72rem;
-      font-weight: 600;
-      color: #1a1d27;
-      outline: none;
-      text-align: center;
-      padding: 2px 4px;
-      border-radius: 4px;
-      width: 100%;
-      min-width: 0;
-    }
-
-    .file-card .file-name:focus { background: #fff; border-color: #6c5ce744; }
-
-    .file-card .file-delete {
-      position: absolute;
-      top: 2px;
-      right: 2px;
-      width: 22px;
-      height: 22px;
-      border: none;
-      background: #fff;
-      border-radius: 6px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #ccc;
-      opacity: 0;
-      transition: all 0.1s;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    }
-
-    .file-card .file-delete svg { width: 12px; height: 12px; }
-    .file-card:hover .file-delete { opacity: 1; }
-    .file-card .file-delete:hover { color: #ef4444; background: #fef2f2; }
-
-    /* ── Drag ghost ── */
-    .dragging { opacity: 0.4; }
-
-    /* ── Drop zone add buttons inside folder ── */
-    .add-icon-btn {
-      width: 100px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.3rem;
-      padding: 0.6rem 0.4rem;
-      border: 2px dashed #dde1ea;
-      border-radius: 12px;
-      background: transparent;
-      cursor: pointer;
-      transition: all 0.12s;
-      font-family: inherit;
-      font-size: 0.65rem;
-      font-weight: 600;
-      color: #b0b6c0;
-    }
-
-    .add-icon-btn:hover { border-color: #6c5ce7; background: #f8f7ff; color: #6c5ce7; }
-
-    .add-icon-btn .add-icon-circle {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .add-icon-btn .add-icon-circle svg { width: 20px; height: 20px; }
-
-    .add-icon-btn.folder-add .add-icon-circle { background: #fff8f0; color: #e67e22; }
-    .add-icon-btn.folder-add:hover .add-icon-circle { background: #ffe0b2; }
-    .add-icon-btn.file-add .add-icon-circle { background: #f0f7ff; color: #2196f3; }
-    .add-icon-btn.file-add:hover .add-icon-circle { background: #bbdefb; }
 
     /* ── Empty state ── */
     .empty-state {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
-      gap: 1rem;
-      color: #b0b6c0;
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; height: 100%; gap: 1rem; color: #b0b6c0;
     }
-
     .empty-state .empty-icon {
-      width: 80px;
-      height: 80px;
-      background: #f0f1f5;
-      border-radius: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      width: 80px; height: 80px; background: #f0f1f5; border-radius: 20px;
+      display: flex; align-items: center; justify-content: center;
     }
-
     .empty-state .empty-icon svg { width: 36px; height: 36px; color: #d0d4db; }
-
     .empty-state p { font-size: 0.9rem; text-align: center; line-height: 1.6; }
-    .empty-state p strong { color: #6b7280; }
-
     .empty-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.7rem 1.4rem;
-      border-radius: 10px;
-      border: none;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.7rem 1.4rem; border-radius: 10px; border: none;
       background: linear-gradient(135deg, #6c5ce7, #a29bfe);
-      color: #fff;
-      font-size: 0.9rem;
-      font-family: inherit;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.15s;
+      color: #fff; font-size: 0.9rem; font-family: inherit; font-weight: 600;
+      cursor: pointer; transition: all 0.15s;
       box-shadow: 0 4px 14px rgba(108,92,231,0.3);
     }
-
     .empty-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(108,92,231,0.4); }
     .empty-cta svg { width: 18px; height: 18px; }
 
     /* ── Preview Panel ── */
     .preview-panel {
-      width: 280px;
-      min-width: 280px;
-      background: #fff;
-      border-left: 1px solid #e2e5ed;
-      padding: 1.25rem;
-      display: flex;
-      flex-direction: column;
-      overflow-y: auto;
+      width: 280px; min-width: 280px; background: #fff;
+      border-left: 1px solid #e2e5ed; padding: 1.25rem;
+      display: flex; flex-direction: column; overflow-y: auto;
     }
-
     .preview-panel h3 {
-      font-size: 0.6rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: #9ca3b0;
-      margin-bottom: 1rem;
+      font-size: 0.6rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; color: #9ca3b0; margin-bottom: 1rem;
     }
-
     .preview-tree {
       font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
-      font-size: 0.72rem;
-      line-height: 1.9;
-      color: #6b7280;
-      white-space: pre;
+      font-size: 0.72rem; line-height: 1.9; color: #6b7280; white-space: pre;
     }
-
-    .preview-empty {
-      color: #d0d4db;
-      font-size: 0.8rem;
-      text-align: center;
-      padding: 2rem 0;
-    }
+    .preview-empty { color: #d0d4db; font-size: 0.8rem; text-align: center; padding: 2rem 0; }
 
     /* ── Modal ── */
     .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.25);
-      backdrop-filter: blur(4px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 200;
-      animation: fadeIn 0.15s ease;
+      position: fixed; inset: 0; background: rgba(0,0,0,0.25);
+      backdrop-filter: blur(4px); display: flex; align-items: center;
+      justify-content: center; z-index: 200; animation: fadeIn 0.15s ease;
     }
-
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
     .modal-box {
-      background: #fff;
-      border: 1px solid #e2e5ed;
-      border-radius: 16px;
-      padding: 1.5rem;
-      width: 90%;
-      max-width: 640px;
-      max-height: 80vh;
-      display: flex;
-      flex-direction: column;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
-      animation: slideUp 0.2s ease;
+      background: #fff; border: 1px solid #e2e5ed; border-radius: 16px;
+      padding: 1.5rem; width: 90%; max-width: 640px; max-height: 80vh;
+      display: flex; flex-direction: column;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.12); animation: slideUp 0.2s ease;
     }
-
     @keyframes slideUp { from { transform: translateY(10px); opacity: 0; } }
-
-    .modal-box h2 { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; color: #1a1d27; }
-
+    .modal-box h2 { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; }
     .modal-box pre {
-      background: #f8f9fb;
-      border: 1px solid #e2e5ed;
-      border-radius: 10px;
-      padding: 1.25rem;
-      font-size: 0.78rem;
-      line-height: 1.7;
-      overflow: auto;
-      flex: 1;
-      color: #555d6e;
+      background: #f8f9fb; border: 1px solid #e2e5ed; border-radius: 10px;
+      padding: 1.25rem; font-size: 0.78rem; line-height: 1.7; overflow: auto;
+      flex: 1; color: #555d6e;
       font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
     }
-
-    .modal-footer {
-      display: flex;
-      gap: 0.5rem;
-      margin-top: 1rem;
-      justify-content: flex-end;
-    }
-
+    .modal-footer { display: flex; gap: 0.5rem; margin-top: 1rem; justify-content: flex-end; }
     .modal-footer button {
-      padding: 0.55rem 1.1rem;
-      border-radius: 8px;
-      border: 1px solid #e2e5ed;
-      background: #fff;
-      color: #555d6e;
-      cursor: pointer;
-      font-size: 0.82rem;
-      font-family: inherit;
-      font-weight: 600;
-      transition: all 0.12s;
+      padding: 0.55rem 1.1rem; border-radius: 8px; border: 1px solid #e2e5ed;
+      background: #fff; color: #555d6e; cursor: pointer; font-size: 0.82rem;
+      font-family: inherit; font-weight: 600; transition: all 0.12s;
     }
-
     .modal-footer button:hover { background: #f0f1f5; }
-
     .modal-footer .btn-primary {
       background: linear-gradient(135deg, #6c5ce7, #a29bfe);
-      border-color: transparent;
-      color: #fff;
+      border-color: transparent; color: #fff;
     }
-
     .modal-footer .btn-primary:hover { opacity: 0.9; }
 
     /* ── Scrollbar ── */
@@ -769,8 +361,7 @@ const I = {
   file: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>,
   filePlus: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>,
   trash: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>,
-  chevDown: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"/></svg>,
-  chevRight: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>,
+  chevron: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>,
   plus: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>,
   layers: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>,
   exportIcon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>,
@@ -791,7 +382,18 @@ const makeNode = (type, name) => ({
   collapsed: false,
 });
 
+// Sort: files FIRST, then folders — so files appear above subfolders
 const sortChildren = (children) => {
+  if (!children) return children;
+  return [...children].sort((a, b) => {
+    if (a.type === 'file' && b.type !== 'file') return -1;
+    if (a.type !== 'file' && b.type === 'file') return 1;
+    return a.name.localeCompare(b.name);
+  });
+};
+
+// For export: folders first (traditional)
+const sortChildrenExport = (children) => {
   if (!children) return children;
   return [...children].sort((a, b) => {
     if (a.type === 'folder' && b.type !== 'folder') return -1;
@@ -801,17 +403,13 @@ const sortChildren = (children) => {
 };
 
 const sortTree = (nodes) =>
-  sortChildren(nodes).map((n) => ({
-    ...n,
-    children: n.children ? sortTree(n.children) : null,
-  }));
+  sortChildren(nodes).map((n) => ({ ...n, children: n.children ? sortTree(n.children) : null }));
 
 const countNodes = (nodes) => {
   let folders = 0, files = 0;
   const walk = (list) => {
     for (const n of list) {
-      if (n.type === 'folder') { folders++; if (n.children) walk(n.children); }
-      else files++;
+      if (n.type === 'folder') { folders++; if (n.children) walk(n.children); } else files++;
     }
   };
   walk(nodes);
@@ -820,7 +418,7 @@ const countNodes = (nodes) => {
 
 const buildExport = (nodes, prefix = '') => {
   let lines = [];
-  const sorted = sortChildren(nodes);
+  const sorted = sortChildrenExport(nodes);
   sorted.forEach((node, i) => {
     const isLast = i === sorted.length - 1;
     const connector = isLast ? '└── ' : '├── ';
@@ -835,7 +433,7 @@ const buildExport = (nodes, prefix = '') => {
   return lines;
 };
 
-// ── Immutable tree ops ──
+// Immutable tree ops
 const updateInTree = (nodes, id, patch) =>
   nodes.map((n) => {
     if (n.id === id) return { ...n, ...patch };
@@ -864,8 +462,14 @@ const findNodeById = (nodes, id) => {
   return null;
 };
 
-// Move node from anywhere to target folder
+const isDescendant = (nodes, ancestorId, childId) => {
+  const ancestor = findNodeById(nodes, ancestorId);
+  if (!ancestor || !ancestor.children) return false;
+  return !!findNodeById(ancestor.children, childId);
+};
+
 const moveNode = (tree, nodeId, targetFolderId) => {
+  if (isDescendant(tree, nodeId, targetFolderId)) return tree;
   const node = findNodeById(tree, nodeId);
   if (!node) return tree;
   let newTree = deleteInTree(tree, nodeId);
@@ -873,52 +477,9 @@ const moveNode = (tree, nodeId, targetFolderId) => {
   return newTree;
 };
 
-/* ═══════ FILE CARD ═══════ */
-function FileCard({ node, onUpdate, onDelete, focusId, linkMode, onLinkStart }) {
-  const nameRef = useRef(null);
-
-  useEffect(() => {
-    if (focusId === node.id && nameRef.current) {
-      nameRef.current.focus();
-      nameRef.current.select();
-    }
-  }, [focusId, node.id]);
-
-  const onDragStart = (e) => {
-    e.dataTransfer.setData('text/plain', String(node.id));
-    e.dataTransfer.effectAllowed = 'move';
-    e.currentTarget.classList.add('dragging');
-  };
-  const onDragEnd = (e) => e.currentTarget.classList.remove('dragging');
-
-  return (
-    <div
-      className="file-card"
-      draggable
-      onDragStart={onDragStart}
-      onDragEnd={onDragEnd}
-      data-node-id={node.id}
-      onClick={() => linkMode && onLinkStart(node.id)}
-    >
-      <div className="file-icon-big">{I.file}</div>
-      <input
-        ref={nameRef}
-        className="file-name"
-        value={node.name}
-        placeholder="file-name"
-        spellCheck={false}
-        onChange={(e) => onUpdate(node.id, { name: e.target.value })}
-      />
-      <button className="file-delete" title="Delete" onClick={(e) => { e.stopPropagation(); onDelete(node.id); }}>
-        {I.x}
-      </button>
-      {linkMode && <div className="link-anchor" onClick={(e) => { e.stopPropagation(); onLinkStart(node.id); }} />}
-    </div>
-  );
-}
-
-/* ═══════ SUBFOLDER (nested inside a folder) ═══════ */
-function SubfolderCard({ node, onUpdate, onDelete, onAddChild, onMoveNode, focusId, linkMode, onLinkStart }) {
+/* ═══════ TREE NODE ═══════ */
+function TreeNode({ node, onUpdate, onDelete, onAddChild, onMoveNode, focusId, linkMode, linkFrom, onLinkClick, depth }) {
+  const isFolder = node.type === 'folder';
   const nameRef = useRef(null);
   const [dragOver, setDragOver] = useState(false);
 
@@ -929,219 +490,185 @@ function SubfolderCard({ node, onUpdate, onDelete, onAddChild, onMoveNode, focus
     }
   }, [focusId, node.id]);
 
-  const sorted = sortChildren(node.children || []);
-  const subfolders = sorted.filter((c) => c.type === 'folder');
-  const files = sorted.filter((c) => c.type === 'file');
+  const sorted = isFolder ? sortChildren(node.children || []) : [];
 
-  const onDragOver = (e) => { e.preventDefault(); e.dataTransfer.dropEffect = 'move'; setDragOver(true); };
-  const onDragLeave = () => setDragOver(false);
-  const onDrop = (e) => {
-    e.preventDefault(); e.stopPropagation(); setDragOver(false);
-    const draggedId = parseInt(e.dataTransfer.getData('text/plain'), 10);
-    if (draggedId && draggedId !== node.id) onMoveNode(draggedId, node.id);
-  };
-
+  // Drag
   const onDragStart = (e) => {
     e.dataTransfer.setData('text/plain', String(node.id));
     e.dataTransfer.effectAllowed = 'move';
-    e.currentTarget.closest('.subfolder-card').classList.add('dragging');
+    e.currentTarget.closest('.tree-node').style.opacity = '0.35';
   };
   const onDragEnd = (e) => {
-    const card = e.currentTarget.closest('.subfolder-card');
-    if (card) card.classList.remove('dragging');
+    const tn = e.currentTarget.closest('.tree-node');
+    if (tn) tn.style.opacity = '1';
   };
 
-  return (
-    <div
-      className={`subfolder-card${dragOver ? ' drag-over' : ''}`}
-      onDragOver={onDragOver}
-      onDragLeave={onDragLeave}
-      onDrop={onDrop}
-      data-node-id={node.id}
-    >
-      <div className="subfolder-header" draggable onDragStart={onDragStart} onDragEnd={onDragEnd}>
-        <button className="icon-btn" style={{ width: 24, height: 24 }}
-          onClick={() => onUpdate(node.id, { collapsed: !node.collapsed })}>
-          {node.collapsed ? I.chevRight : I.chevDown}
-        </button>
-        <div className="sf-icon">{I.folder}</div>
-        <input
-          ref={nameRef}
-          className="sf-name"
-          value={node.name}
-          placeholder="folder-name"
-          spellCheck={false}
-          onChange={(e) => onUpdate(node.id, { name: e.target.value })}
-        />
-        <input
-          className="sf-desc"
-          value={node.description}
-          placeholder="description..."
-          spellCheck={false}
-          onChange={(e) => onUpdate(node.id, { description: e.target.value })}
-        />
-        <div className="subfolder-actions">
-          <button className="icon-btn" title="Add subfolder" onClick={() => onAddChild(node.id, 'folder')}>{I.folderPlus}</button>
-          <button className="icon-btn" title="Add file" onClick={() => onAddChild(node.id, 'file')}>{I.filePlus}</button>
-          <button className="icon-btn delete" title="Delete" onClick={() => onDelete(node.id)}>{I.trash}</button>
-        </div>
-      </div>
-
-      {!node.collapsed && (
-        <div className="subfolder-body">
-          {subfolders.map((sf) => (
-            <SubfolderCard key={sf.id} node={sf} onUpdate={onUpdate} onDelete={onDelete}
-              onAddChild={onAddChild} onMoveNode={onMoveNode} focusId={focusId}
-              linkMode={linkMode} onLinkStart={onLinkStart} />
-          ))}
-          {files.map((f) => (
-            <FileCard key={f.id} node={f} onUpdate={onUpdate} onDelete={onDelete}
-              focusId={focusId} linkMode={linkMode} onLinkStart={onLinkStart} />
-          ))}
-          <button className="add-icon-btn folder-add" onClick={() => onAddChild(node.id, 'folder')}>
-            <div className="add-icon-circle">{I.folderPlus}</div>
-            Folder
-          </button>
-          <button className="add-icon-btn file-add" onClick={() => onAddChild(node.id, 'file')}>
-            <div className="add-icon-circle">{I.filePlus}</div>
-            File
-          </button>
-        </div>
-      )}
-      {linkMode && <div className="link-anchor" onClick={() => onLinkStart(node.id)} />}
-    </div>
-  );
-}
-
-/* ═══════ ROOT FOLDER CARD ═══════ */
-function FolderCard({ node, onUpdate, onDelete, onAddChild, onMoveNode, focusId, linkMode, onLinkStart }) {
-  const nameRef = useRef(null);
-  const [dragOver, setDragOver] = useState(false);
-
-  useEffect(() => {
-    if (focusId === node.id && nameRef.current) {
-      nameRef.current.focus();
-      nameRef.current.select();
-    }
-  }, [focusId, node.id]);
-
-  const sorted = sortChildren(node.children || []);
-  const subfolders = sorted.filter((c) => c.type === 'folder');
-  const files = sorted.filter((c) => c.type === 'file');
-
-  const onDragOver = (e) => { e.preventDefault(); e.dataTransfer.dropEffect = 'move'; setDragOver(true); };
-  const onDragLeave = () => setDragOver(false);
+  // Drop (only folders)
+  const onDragOver = (e) => {
+    if (!isFolder) return;
+    e.preventDefault(); e.stopPropagation();
+    e.dataTransfer.dropEffect = 'move';
+    setDragOver(true);
+  };
+  const onDragLeave = (e) => {
+    e.stopPropagation();
+    setDragOver(false);
+  };
   const onDrop = (e) => {
     e.preventDefault(); e.stopPropagation(); setDragOver(false);
     const draggedId = parseInt(e.dataTransfer.getData('text/plain'), 10);
     if (draggedId && draggedId !== node.id) onMoveNode(draggedId, node.id);
   };
 
+  const isLinkSelected = linkFrom === node.id;
+  const rowClass = [
+    'tree-row',
+    linkMode ? 'link-selectable' : '',
+    isLinkSelected ? 'link-selected' : '',
+    dragOver ? 'drag-over' : '',
+  ].filter(Boolean).join(' ');
+
   return (
-    <div
-      className={`folder-card${dragOver ? ' drag-over' : ''}`}
-      onDragOver={onDragOver}
-      onDragLeave={onDragLeave}
-      onDrop={onDrop}
-      data-node-id={node.id}
-    >
-      <div className="folder-header">
-        <button className="icon-btn" style={{ width: 28, height: 28 }}
-          onClick={() => onUpdate(node.id, { collapsed: !node.collapsed })}>
-          {node.collapsed ? I.chevRight : I.chevDown}
-        </button>
-        <div className="folder-icon-big">{I.folder}</div>
+    <div className="tree-node" data-node-id={node.id}>
+      <div
+        className={rowClass}
+        onDragOver={onDragOver}
+        onDragLeave={onDragLeave}
+        onDrop={onDrop}
+        onClick={() => linkMode && onLinkClick(node.id)}
+      >
+        {isFolder ? (
+          <button className={`chev-btn ${node.collapsed ? '' : 'open'}`}
+            onClick={(e) => { e.stopPropagation(); onUpdate(node.id, { collapsed: !node.collapsed }); }}>
+            {I.chevron}
+          </button>
+        ) : (
+          <div className="chev-placeholder" />
+        )}
+
+        <div
+          className={`node-icon-box ${isFolder ? 'folder' : 'file'}`}
+          draggable
+          onDragStart={onDragStart}
+          onDragEnd={onDragEnd}
+        >
+          {isFolder ? I.folder : I.file}
+        </div>
+
         <input
           ref={nameRef}
-          className="folder-name-input"
+          className="node-name"
           value={node.name}
-          placeholder="folder-name"
+          placeholder={isFolder ? 'folder-name' : 'file-name'}
           spellCheck={false}
           onChange={(e) => onUpdate(node.id, { name: e.target.value })}
+          onClick={(e) => e.stopPropagation()}
+          size={Math.max(node.name.length, 8)}
         />
+
         <input
-          className="folder-desc-input"
+          className="node-desc"
           value={node.description}
           placeholder="description..."
           spellCheck={false}
           onChange={(e) => onUpdate(node.id, { description: e.target.value })}
+          onClick={(e) => e.stopPropagation()}
         />
-        <div className="folder-actions">
-          <button className="icon-btn" title="Add subfolder" onClick={() => onAddChild(node.id, 'folder')}>{I.folderPlus}</button>
-          <button className="icon-btn" title="Add file" onClick={() => onAddChild(node.id, 'file')}>{I.filePlus}</button>
-          <button className="icon-btn delete" title="Delete" onClick={() => onDelete(node.id)}>{I.trash}</button>
+
+        <div className="row-actions">
+          {isFolder && (
+            <>
+              <button className="icon-btn add-folder" title="Add subfolder"
+                onClick={(e) => { e.stopPropagation(); onAddChild(node.id, 'folder'); }}>
+                {I.folderPlus}
+              </button>
+              <button className="icon-btn add-file" title="Add file"
+                onClick={(e) => { e.stopPropagation(); onAddChild(node.id, 'file'); }}>
+                {I.filePlus}
+              </button>
+            </>
+          )}
+          <button className="icon-btn delete" title="Delete"
+            onClick={(e) => { e.stopPropagation(); onDelete(node.id); }}>
+            {I.trash}
+          </button>
         </div>
       </div>
 
-      {!node.collapsed && (
-        <div className="folder-body">
-          {subfolders.map((sf) => (
-            <SubfolderCard key={sf.id} node={sf} onUpdate={onUpdate} onDelete={onDelete}
-              onAddChild={onAddChild} onMoveNode={onMoveNode} focusId={focusId}
-              linkMode={linkMode} onLinkStart={onLinkStart} />
+      {isFolder && (
+        <div className={`tree-children${node.collapsed ? ' collapsed' : ''}`}>
+          {sorted.map((child) => (
+            <TreeNode
+              key={child.id}
+              node={child}
+              onUpdate={onUpdate}
+              onDelete={onDelete}
+              onAddChild={onAddChild}
+              onMoveNode={onMoveNode}
+              focusId={focusId}
+              linkMode={linkMode}
+              linkFrom={linkFrom}
+              onLinkClick={onLinkClick}
+              depth={depth + 1}
+            />
           ))}
-          {files.map((f) => (
-            <FileCard key={f.id} node={f} onUpdate={onUpdate} onDelete={onDelete}
-              focusId={focusId} linkMode={linkMode} onLinkStart={onLinkStart} />
-          ))}
-          <button className="add-icon-btn folder-add" onClick={() => onAddChild(node.id, 'folder')}>
-            <div className="add-icon-circle">{I.folderPlus}</div>
-            Folder
-          </button>
-          <button className="add-icon-btn file-add" onClick={() => onAddChild(node.id, 'file')}>
-            <div className="add-icon-circle">{I.filePlus}</div>
-            File
-          </button>
+          <div className="add-child-row">
+            <button className="add-child-btn file-add" onClick={() => onAddChild(node.id, 'file')}>
+              {I.filePlus} File
+            </button>
+            <button className="add-child-btn folder-add" onClick={() => onAddChild(node.id, 'folder')}>
+              {I.folderPlus} Folder
+            </button>
+          </div>
         </div>
       )}
-      {linkMode && <div className="link-anchor" onClick={() => onLinkStart(node.id)} />}
     </div>
   );
 }
 
-/* ═══════ CONNECTIONS SVG ═══════ */
-function ConnectionsLayer({ links, tempLink }) {
-  const [positions, setPositions] = useState({});
+/* ═══════ CONNECTION LINES (fixed SVG) ═══════ */
+function ConnectionLines({ links }) {
+  const [positions, setPositions] = useState([]);
 
   useEffect(() => {
-    const update = () => {
-      const canvas = document.querySelector('.canvas-area');
-      if (!canvas) return;
-      const cRect = canvas.getBoundingClientRect();
-      const scrollLeft = canvas.scrollLeft;
-      const scrollTop = canvas.scrollTop;
-      const pos = {};
-      document.querySelectorAll('[data-node-id]').forEach((el) => {
-        const id = el.getAttribute('data-node-id');
-        const r = el.getBoundingClientRect();
-        pos[id] = {
-          x: r.left - cRect.left + scrollLeft + r.width / 2,
-          y: r.top - cRect.top + scrollTop + r.height / 2,
-          right: r.right - cRect.left + scrollLeft,
-          left: r.left - cRect.left + scrollLeft,
+    const compute = () => {
+      const newPos = links.map((lk) => {
+        const elFrom = document.querySelector(`[data-node-id="${lk.from}"] > .tree-row .node-icon-box`);
+        const elTo = document.querySelector(`[data-node-id="${lk.to}"] > .tree-row .node-icon-box`);
+        if (!elFrom || !elTo) return null;
+        const rFrom = elFrom.getBoundingClientRect();
+        const rTo = elTo.getBoundingClientRect();
+        return {
+          x1: rFrom.left + rFrom.width / 2,
+          y1: rFrom.top + rFrom.height / 2,
+          x2: rTo.left + rTo.width / 2,
+          y2: rTo.top + rTo.height / 2,
         };
-      });
-      setPositions(pos);
+      }).filter(Boolean);
+      setPositions(newPos);
     };
-    update();
-    const interval = setInterval(update, 300);
-    return () => clearInterval(interval);
+    compute();
+    const interval = setInterval(compute, 200);
+    window.addEventListener('scroll', compute, true);
+    return () => { clearInterval(interval); window.removeEventListener('scroll', compute, true); };
   }, [links]);
 
+  if (positions.length === 0) return null;
+
   return (
-    <svg className="connections-layer">
-      {links.map((lk, i) => {
-        const a = positions[lk.from];
-        const b = positions[lk.to];
-        if (!a || !b) return null;
-        const x1 = a.right;
-        const y1 = a.y;
-        const x2 = b.left;
-        const y2 = b.y;
-        const mx = (x1 + x2) / 2;
+    <svg className="connections-svg">
+      {positions.map((p, i) => {
+        const dx = p.x2 - p.x1;
+        const dy = p.y2 - p.y1;
+        const cx = Math.abs(dx) * 0.4;
         return (
-          <path key={i} className="connection-line"
-            d={`M ${x1} ${y1} C ${mx} ${y1}, ${mx} ${y2}, ${x2} ${y2}`} />
+          <g key={i}>
+            <path className="conn-line"
+              d={`M ${p.x1} ${p.y1} C ${p.x1 + cx} ${p.y1}, ${p.x2 - cx} ${p.y2}, ${p.x2} ${p.y2}`}
+            />
+            <circle className="conn-dot" cx={p.x1} cy={p.y1} r="5" />
+            <circle className="conn-dot" cx={p.x2} cy={p.y2} r="5" />
+          </g>
         );
       })}
     </svg>
@@ -1193,27 +720,45 @@ function App() {
     setTimeout(() => setCopyLabel('Copy'), 1500);
   }, [tree]);
 
-  const handleLinkStart = useCallback((id) => {
+  // Link mode click handler
+  const handleLinkClick = useCallback((id) => {
     if (!linkMode) return;
     if (linkFrom === null) {
       setLinkFrom(id);
     } else {
       if (linkFrom !== id) {
+        const from = linkFrom;
         setLinks((prev) => {
-          const exists = prev.some((l) => (l.from === linkFrom && l.to === id) || (l.from === id && l.to === linkFrom));
-          if (exists) return prev.filter((l) => !((l.from === linkFrom && l.to === id) || (l.from === id && l.to === linkFrom)));
-          return [...prev, { from: linkFrom, to: id }];
+          const exists = prev.some((l) =>
+            (l.from === from && l.to === id) || (l.from === id && l.to === from)
+          );
+          if (exists) {
+            return prev.filter((l) =>
+              !((l.from === from && l.to === id) || (l.from === id && l.to === from))
+            );
+          }
+          return [...prev, { from, to: id }];
         });
       }
       setLinkFrom(null);
     }
   }, [linkMode, linkFrom]);
 
+  // Escape to cancel link
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === 'Escape') { setLinkFrom(null); if (linkMode) setLinkMode(false); } };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [linkMode]);
+
   const { folders, files } = countNodes(tree);
   const sorted = sortTree(tree);
 
   return (
-    <div className={`app${linkMode ? ' link-mode' : ''}`}>
+    <div className="app">
+      {/* Connection lines rendered on top of everything */}
+      <ConnectionLines links={links} />
+
       {/* Sidebar */}
       <div className="sidebar">
         <div className="logo">
@@ -1234,11 +779,21 @@ function App() {
         <div className="sidebar-divider" />
 
         <div className="sidebar-label">Tools</div>
-        <button className={`link-toggle${linkMode ? ' active' : ''}`}
-          onClick={() => { setLinkMode((p) => !p); setLinkFrom(null); }}>
+        <button
+          className={`link-toggle${linkMode ? (linkFrom !== null ? ' waiting' : ' active') : ''}`}
+          onClick={() => { setLinkMode((p) => !p); setLinkFrom(null); }}
+        >
           {I.link}
-          {linkMode ? (linkFrom !== null ? 'Click target...' : 'Link Mode ON') : 'Link Mode'}
+          {linkMode
+            ? (linkFrom !== null ? 'Now click target...' : 'Link Mode ON — click source')
+            : 'Link Mode'}
         </button>
+
+        {links.length > 0 && (
+          <button className="action-btn danger" onClick={() => setLinks([])}>
+            {I.x} Clear All Links ({links.length})
+          </button>
+        )}
 
         <div className="sidebar-divider" />
 
@@ -1250,23 +805,25 @@ function App() {
           {I.eraser} Clear All
         </button>
 
-        <div className="sidebar-footer">Folders always sort above files</div>
+        <div className="sidebar-footer">Files appear above subfolders</div>
       </div>
 
-      {/* Main canvas */}
+      {/* Main tree */}
       <div className="main">
         <div className="toolbar-bar">
           <div className="stats">
             <span><span className="stat-dot folder" />{folders} folder{folders !== 1 ? 's' : ''}</span>
             <span><span className="stat-dot file" />{files} file{files !== 1 ? 's' : ''}</span>
+            {links.length > 0 && <span>{links.length} link{links.length !== 1 ? 's' : ''}</span>}
           </div>
           <div className="hint">
-            {linkMode ? 'Click two items to connect / disconnect them' : 'Drag items between folders to reorganize'}
+            {linkMode
+              ? (linkFrom !== null ? 'Click another item to complete the link (Esc to cancel)' : 'Click an item to start linking')
+              : 'Drag icons to move between folders'}
           </div>
         </div>
 
         <div className="canvas-area">
-          <ConnectionsLayer links={links} />
           {sorted.length === 0 ? (
             <div className="empty-state">
               <div className="empty-icon">{I.layers}</div>
@@ -1275,10 +832,13 @@ function App() {
             </div>
           ) : (
             sorted.map((node) => (
-              <FolderCard key={node.id} node={node}
+              <TreeNode
+                key={node.id} node={node}
                 onUpdate={handleUpdate} onDelete={handleDelete}
                 onAddChild={handleAddChild} onMoveNode={handleMoveNode}
-                focusId={focusId} linkMode={linkMode} onLinkStart={handleLinkStart} />
+                focusId={focusId} linkMode={linkMode} linkFrom={linkFrom}
+                onLinkClick={handleLinkClick} depth={0}
+              />
             ))
           )}
         </div>
