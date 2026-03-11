@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>File Structure Planner</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0f1117;
+      color: #e1e4e8;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #f0f0f0;
+      margin-bottom: 0.25rem;
+    }
+
+    header p {
+      color: #6b7280;
+      font-size: 0.9rem;
+    }
+
+    .toolbar {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .toolbar button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.2rem;
+      border: 1px solid #2d333b;
+      border-radius: 8px;
+      background: #161b22;
+      color: #e1e4e8;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .toolbar button:hover {
+      background: #1c2333;
+      border-color: #444c56;
+    }
+
+    .toolbar button .icon {
+      font-size: 1rem;
+    }
+
+    .toolbar .btn-folder { border-color: #d4943a44; }
+    .toolbar .btn-folder:hover { background: #d4943a18; border-color: #d4943a88; }
+    .toolbar .btn-export { border-color: #3a8ed444; }
+    .toolbar .btn-export:hover { background: #3a8ed418; border-color: #3a8ed488; }
+    .toolbar .btn-clear { border-color: #d43a3a44; }
+    .toolbar .btn-clear:hover { background: #d43a3a18; border-color: #d43a3a88; }
+
+    .tree-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #161b22;
+      border: 1px solid #2d333b;
+      border-radius: 12px;
+      padding: 1.5rem;
+      min-height: 200px;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: #484f58;
+    }
+
+    .empty-state .icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
+    .empty-state p { font-size: 0.95rem; }
+
+    /* Tree items */
+    .tree-item {
+      position: relative;
+      margin-bottom: 2px;
+    }
+
+    .tree-item-row {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.5rem;
+      border-radius: 6px;
+      transition: background 0.1s;
+    }
+
+    .tree-item-row:hover {
+      background: #1c2333;
+    }
+
+    .tree-item-row .toggle {
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #484f58;
+      font-size: 0.7rem;
+      flex-shrink: 0;
+      border: none;
+      background: none;
+      border-radius: 4px;
+      transition: all 0.15s;
+    }
+
+    .tree-item-row .toggle:hover { background: #2d333b; color: #e1e4e8; }
+    .tree-item-row .toggle.hidden { visibility: hidden; }
+
+    .tree-item-row .node-icon {
+      font-size: 1rem;
+      flex-shrink: 0;
+      width: 20px;
+      text-align: center;
+    }
+
+    .tree-item-row .node-name {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #e1e4e8;
+      border: none;
+      background: none;
+      outline: none;
+      min-width: 60px;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+
+    .tree-item-row .node-name:focus {
+      background: #0d1117;
+      box-shadow: 0 0 0 1px #444c56;
+    }
+
+    .tree-item-row .node-desc {
+      font-size: 0.8rem;
+      color: #6b7280;
+      border: none;
+      background: none;
+      outline: none;
+      flex: 1;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-style: italic;
+    }
+
+    .tree-item-row .node-desc:focus {
+      background: #0d1117;
+      box-shadow: 0 0 0 1px #444c56;
+      color: #9ca3af;
+    }
+
+    .tree-item-row .node-desc::placeholder { color: #383d45; }
+    .tree-item-row .node-name::placeholder { color: #383d45; }
+
+    .tree-item-row .actions {
+      display: flex;
+      gap: 2px;
+      opacity: 0;
+      transition: opacity 0.15s;
+    }
+
+    .tree-item-row:hover .actions { opacity: 1; }
+
+    .actions button {
+      width: 26px;
+      height: 26px;
+      border: none;
+      background: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #6b7280;
+      transition: all 0.1s;
+    }
+
+    .actions button:hover { background: #2d333b; color: #e1e4e8; }
+    .actions .btn-delete:hover { background: #d43a3a33; color: #f47067; }
+
+    .tree-children {
+      padding-left: 1.5rem;
+      border-left: 1px solid #2d333b;
+      margin-left: 0.65rem;
+    }
+
+    .tree-children.collapsed { display: none; }
+
+    /* Folder colors */
+    .folder-icon { color: #d4943a; }
+    .file-icon { color: #6b9fed; }
+
+    /* Export modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.2s;
+    }
+
+    .modal-overlay.active { opacity: 1; visibility: visible; }
+
+    .modal {
+      background: #161b22;
+      border: 1px solid #2d333b;
+      border-radius: 12px;
+      padding: 1.5rem;
+      width: 90%;
+      max-width: 600px;
+      max-height: 80vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal h2 { font-size: 1rem; margin-bottom: 1rem; }
+
+    .modal pre {
+      background: #0d1117;
+      border: 1px solid #2d333b;
+      border-radius: 8px;
+      padding: 1rem;
+      font-size: 0.8rem;
+      line-height: 1.6;
+      overflow: auto;
+      flex: 1;
+      color: #9ca3af;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+    }
+
+    .modal .modal-actions {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      justify-content: flex-end;
+    }
+
+    .modal .modal-actions button {
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      border: 1px solid #2d333b;
+      background: #161b22;
+      color: #e1e4e8;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all 0.15s;
+    }
+
+    .modal .modal-actions button:hover { background: #1c2333; }
+
+    .modal .modal-actions .btn-copy {
+      background: #238636;
+      border-color: #238636;
+    }
+
+    .modal .modal-actions .btn-copy:hover { background: #2ea043; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>File Structure Planner</h1>
+  <p>Plan your project's file structure visually</p>
+</header>
+
+<div class="toolbar">
+  <button class="btn-folder" onclick="addRootFolder()">
+    <span class="icon">📁</span> Add Folder
+  </button>
+  <button class="btn-export" onclick="showExport()">
+    <span class="icon">📋</span> Export
+  </button>
+  <button class="btn-clear" onclick="clearAll()">
+    <span class="icon">🗑</span> Clear All
+  </button>
+</div>
+
+<div class="tree-container" id="tree"></div>
+
+<div class="modal-overlay" id="modal" onclick="closeModal(event)">
+  <div class="modal">
+    <h2>Exported Structure</h2>
+    <pre id="export-output"></pre>
+    <div class="modal-actions">
+      <button onclick="closeModal()">Close</button>
+      <button class="btn-copy" onclick="copyExport()">Copy</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  let tree = [];
+  let idCounter = 0;
+
+  function uid() { return ++idCounter; }
+
+  function createNode(type, name) {
+    return {
+      id: uid(),
+      type,
+      name: name || (type === 'folder' ? 'new-folder' : 'new-file'),
+      description: '',
+      children: type === 'folder' ? [] : null,
+      collapsed: false,
+    };
+  }
+
+  function addRootFolder() {
+    tree.push(createNode('folder'));
+    render();
+    focusNode(idCounter);
+  }
+
+  function findParent(nodes, targetId, parent) {
+    for (const node of nodes) {
+      if (node.id === targetId) return { parent, siblings: nodes };
+      if (node.children) {
+        const found = findParent(node.children, targetId, node);
+        if (found) return found;
+      }
+    }
+    return null;
+  }
+
+  function findNode(nodes, id) {
+    for (const node of nodes) {
+      if (node.id === id) return node;
+      if (node.children) {
+        const found = findNode(node.children, id);
+        if (found) return found;
+      }
+    }
+    return null;
+  }
+
+  function addChild(parentId, type) {
+    const parent = findNode(tree, parentId);
+    if (!parent || parent.type !== 'folder') return;
+    parent.collapsed = false;
+    parent.children.push(createNode(type));
+    render();
+    focusNode(idCounter);
+  }
+
+  function deleteNode(id) {
+    const result = findParent(tree, id, null);
+    if (!result) return;
+    const idx = result.siblings.findIndex(n => n.id === id);
+    if (idx !== -1) result.siblings.splice(idx, 1);
+    render();
+  }
+
+  function toggleCollapse(id) {
+    const node = findNode(tree, id);
+    if (node) node.collapsed = !node.collapsed;
+    render();
+  }
+
+  function updateName(id, value) {
+    const node = findNode(tree, id);
+    if (node) node.name = value;
+  }
+
+  function updateDesc(id, value) {
+    const node = findNode(tree, id);
+    if (node) node.description = value;
+  }
+
+  function focusNode(id) {
+    requestAnimationFrame(() => {
+      const el = document.querySelector(`[data-id="${id}"] .node-name`);
+      if (el) { el.focus(); el.select(); }
+    });
+  }
+
+  function renderNode(node) {
+    const isFolder = node.type === 'folder';
+    const hasChildren = isFolder && node.children.length > 0;
+    const chevron = node.collapsed ? '▶' : '▼';
+
+    let html = `<div class="tree-item" data-id="${node.id}">`;
+    html += `<div class="tree-item-row">`;
+
+    // Toggle
+    if (isFolder) {
+      html += `<button class="toggle" onclick="toggleCollapse(${node.id})">${chevron}</button>`;
+    } else {
+      html += `<span class="toggle hidden"></span>`;
+    }
+
+    // Icon
+    html += `<span class="node-icon ${isFolder ? 'folder-icon' : 'file-icon'}">${isFolder ? '📁' : '📄'}</span>`;
+
+    // Name
+    html += `<input class="node-name" value="${escHtml(node.name)}" placeholder="${isFolder ? 'folder-name' : 'file-name'}"
+      oninput="updateName(${node.id}, this.value)" spellcheck="false">`;
+
+    // Description
+    html += `<input class="node-desc" value="${escHtml(node.description)}" placeholder="description..."
+      oninput="updateDesc(${node.id}, this.value)" spellcheck="false">`;
+
+    // Actions
+    html += `<div class="actions">`;
+    if (isFolder) {
+      html += `<button title="Add subfolder" onclick="addChild(${node.id}, 'folder')">📁+</button>`;
+      html += `<button title="Add file" onclick="addChild(${node.id}, 'file')">📄+</button>`;
+    }
+    html += `<button class="btn-delete" title="Delete" onclick="deleteNode(${node.id})">✕</button>`;
+    html += `</div>`;
+
+    html += `</div>`;
+
+    // Children
+    if (isFolder) {
+      html += `<div class="tree-children${node.collapsed ? ' collapsed' : ''}">`;
+      for (const child of node.children) {
+        html += renderNode(child);
+      }
+      html += `</div>`;
+    }
+
+    html += `</div>`;
+    return html;
+  }
+
+  function render() {
+    const container = document.getElementById('tree');
+    if (tree.length === 0) {
+      container.innerHTML = `<div class="empty-state">
+        <div class="icon">📂</div>
+        <p>Click <strong>"Add Folder"</strong> to start planning your structure</p>
+      </div>`;
+      return;
+    }
+    container.innerHTML = tree.map(renderNode).join('');
+  }
+
+  function escHtml(str) {
+    return str.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  function exportTree(nodes, prefix) {
+    let lines = [];
+    nodes.forEach((node, i) => {
+      const isLast = i === nodes.length - 1;
+      const connector = isLast ? '└── ' : '├── ';
+      const icon = node.type === 'folder' ? '📁 ' : '📄 ';
+      const desc = node.description ? `  ← ${node.description}` : '';
+      lines.push(prefix + connector + icon + node.name + (node.type === 'folder' ? '/' : '') + desc);
+
+      if (node.children && node.children.length > 0) {
+        const childPrefix = prefix + (isLast ? '    ' : '│   ');
+        lines = lines.concat(exportTree(node.children, childPrefix));
+      }
+    });
+    return lines;
+  }
+
+  function showExport() {
+    if (tree.length === 0) return;
+    const output = exportTree(tree, '').join('\n');
+    document.getElementById('export-output').textContent = output;
+    document.getElementById('modal').classList.add('active');
+  }
+
+  function closeModal(e) {
+    if (!e || e.target === document.getElementById('modal')) {
+      document.getElementById('modal').classList.remove('active');
+    }
+  }
+
+  function copyExport() {
+    const text = document.getElementById('export-output').textContent;
+    navigator.clipboard.writeText(text);
+    const btn = document.querySelector('.btn-copy');
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = 'Copy', 1500);
+  }
+
+  function clearAll() {
+    if (tree.length === 0) return;
+    if (confirm('Clear the entire structure?')) {
+      tree = [];
+      render();
+    }
+  }
+
+  // Initial render
+  render();
+</script>
+
+</body>
+</html>
